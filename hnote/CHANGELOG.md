@@ -1,5 +1,14 @@
 # Change log
 
+## V. 0.0.2 - Mar. 03. 2020
+
+**Added**
+
+-   Components : UserHeadning, MainNavbar
+-   Updated styling in App.tsx
+-   Deleted icons from expo
+-   Added user.png
+
 ## v. 0.0.1 - Mar. 03. 2020
 
 Initial relase.

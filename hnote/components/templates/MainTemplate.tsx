@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import MainNavbar from '../organisms/Sidebars/MainNavbar';
 
 const MainTemplate = () => (
     <View>
-        <Text>test</Text>
+        <MainNavbar></MainNavbar>
     </View>
 );
 
