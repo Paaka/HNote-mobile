@@ -1,5 +1,13 @@
 # Change log
 
+## V. 0.0.3 - Mar. 04.2020
+
+**Added**
+
+-   Components RoundBtn, TitleText,
+-   Styling to splash screen
+-   Updated Main Navbar
+
 ## V. 0.0.2 - Mar. 03. 2020
 
 **Added**
