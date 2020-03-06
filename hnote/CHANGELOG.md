@@ -1,5 +1,12 @@
 # Change log
 
+## V. 0.0.4 - Mar. 06.2020
+
+**Added**
+
+-   MainLists, MenuListItem, ListText Component
+-   Sun.png
+
 ## V. 0.0.3 - Mar. 04.2020
 
 **Added**
@@ -13,7 +20,7 @@
 **Added**
 
 -   Components : UserHeadning, MainNavbar
--   Updated styling in App.tsx
+-   Updated styling in App.tsx`
 -   Deleted icons from expo
 -   Added user.png
 

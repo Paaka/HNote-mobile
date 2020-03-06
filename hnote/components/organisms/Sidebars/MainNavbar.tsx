@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
-import UserHeading from '../../molecules/UserHeading';
-import TitleText from '../../atoms/TitleText';
+import TitleText from '../../atoms/Texts/TitleText';
 
 const MainNavbar = () => {
     return (
