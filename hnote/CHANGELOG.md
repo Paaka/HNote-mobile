@@ -4,8 +4,9 @@
 
 **Added**
 
--   MainLists, MenuListItem, ListText Component
--   Sun.png
+-   MainLists, MenuListItem, ListText, Hr, Component
+-   Upgrated general styling
+-   Added images : Sun.png, homework.png, plus.png, star.png
 
 ## V. 0.0.3 - Mar. 04.2020
 

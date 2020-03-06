@@ -1,15 +1,15 @@
 import React from 'react';
-import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Image, StyleSheet, TouchableHighlight } from 'react-native';
 import ListText from '../atoms/Texts/ListText';
 
 const MenuListItem = ({ text, imagePath, onPress }) => {
     return (
-        <TouchableOpacity activeOpacity={0.7} onPress={onPress}>
+        <TouchableHighlight underlayColor="#ddd" onPress={onPress}>
             <View style={styles.wrapper}>
                 <Image style={styles.image} source={imagePath} />
                 <ListText>{text}</ListText>
             </View>
-        </TouchableOpacity>
+        </TouchableHighlight>
     );
 };
 
@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         alignItems: 'center',
         marginVertical: 10,
+        width: '95%',
     },
     image: {
         width: 30,
