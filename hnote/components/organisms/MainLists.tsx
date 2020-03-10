@@ -19,7 +19,7 @@ const MainLists = props => {
             <MenuListItem
                 imagePath={require('../../assets/images/homework.png')}
                 onPress={() => console.log('work')}
-                text="My tasks"
+                text="All tasks"
             />
             <HR />
 

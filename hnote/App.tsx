@@ -1,11 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import stororo from './store/';
 import MainTemplate from './components/templates/MainTemplate';
 
 export default function App() {
     return (
         <View style={styles.container}>
-            <MainTemplate></MainTemplate>
+            <Provider store={stororo}>
+                <MainTemplate></MainTemplate>
+            </Provider>
         </View>
     );
 }

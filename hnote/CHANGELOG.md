@@ -1,5 +1,11 @@
 # Change log
 
+## V. 0.0.4 - Mar. 10.2020
+
+**Added**
+
+-   Redux, react-redux Provider
+
 ## V. 0.0.4 - Mar. 06.2020
 
 **Added**
