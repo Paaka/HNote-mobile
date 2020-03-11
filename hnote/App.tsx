@@ -3,15 +3,10 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import stororo from './store/';
 import MainTemplate from './components/templates/MainTemplate';
+import NavigationToDo from './navigation/ToDoNavigation';
 
 export default function App() {
-    return (
-        <View style={styles.container}>
-            <Provider store={stororo}>
-                <MainTemplate></MainTemplate>
-            </Provider>
-        </View>
-    );
+    return <NavigationToDo />;
 }
 
 const styles = StyleSheet.create({

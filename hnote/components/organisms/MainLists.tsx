@@ -8,7 +8,7 @@ const MainLists = props => {
         <View style={styles.wrapper}>
             <MenuListItem
                 imagePath={require('../../assets/images/sun.png')}
-                onPress={() => console.log('work')}
+                onPress={() => console.log(props.navigation)}
                 text="My Day"
             />
             <MenuListItem
