@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { FC, useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import MenuListItem from '../molecules/MenuListItem';
 import HR from '../atoms/Hr';
 
-const MainLists = props => {
+interface IMainProps {
+    nav: any;
+}
+
+const MainLists: FC<IMainProps> = props => {
     return (
         <View style={styles.wrapper}>
             <MenuListItem
                 imagePath={require('../../assets/images/sun.png')}
-                onPress={() => console.log(props.navigation)}
+                onPress={() => console.log(props.nav.navigate('ListPage'))}
                 text="My Day"
             />
             <MenuListItem
@@ -26,7 +30,9 @@ const MainLists = props => {
             <View style={styles.newItemWrapper}>
                 <MenuListItem
                     imagePath={require('../../assets/images/plus.png')}
-                    onPress={() => console.log('add')}
+                    onPress={() => {
+                        props.nav.navigate('NewListPage');
+                    }}
                     text="NEW LIST"
                 />
             </View>

@@ -4,9 +4,7 @@ import MainTemplate from '../components/templates/MainTemplate';
 
 const MainScreen = props => (
     <View>
-        {console.log(props.all)}
-        <Text>MainScreen</Text>
-        <MainTemplate all={props.navigation}></MainTemplate>
+        <MainTemplate nav={props.navigation}></MainTemplate>
     </View>
 );
 

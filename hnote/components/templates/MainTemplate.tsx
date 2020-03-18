@@ -1,21 +1,20 @@
 import React, { FC } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import MainNavbar from '../organisms/Sidebars/MainNavbar';
 import MainList from '../organisms/MainLists';
 
 interface IMainProps {
-    all: Object;
+    nav: any;
 }
 
 const MainTemplate: FC<IMainProps> = props => {
     {
-        console.log(props.all);
+        console.log(props.nav);
     }
 
     return (
         <View>
-            <MainNavbar></MainNavbar>
-            <MainList></MainList>
+            <MainList nav={props.nav}></MainList>
         </View>
     );
 };
