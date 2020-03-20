@@ -1,10 +1,12 @@
 import React, { FC, useState } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { connect } from 'react-redux';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import MenuListItem from '../molecules/MenuListItem';
 import HR from '../atoms/Hr';
 
 interface IMainProps {
     nav: any;
+    userLists: any;
 }
 
 const MainLists: FC<IMainProps> = props => {
@@ -36,6 +38,25 @@ const MainLists: FC<IMainProps> = props => {
                     text="NEW LIST"
                 />
             </View>
+
+            <ScrollView>
+                {props.userLists.map((list, item) => (
+                    <MenuListItem
+                        imagePath={require('../../assets/images/to-do.png')}
+                        key={list.id}
+                        onPress={() =>
+                            props.nav.navigate({
+                                routeName: 'ListPage',
+                                params: {
+                                    listId: list.id,
+                                    title: list.text,
+                                },
+                            })
+                        }
+                        text={list.text}
+                    />
+                ))}
+            </ScrollView>
         </View>
     );
 };
@@ -56,4 +77,6 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MainLists;
+const mapStateToProps = ({ userLists }) => ({ userLists });
+
+export default connect(mapStateToProps, null)(MainLists);

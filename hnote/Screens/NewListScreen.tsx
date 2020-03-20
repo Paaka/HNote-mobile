@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { addList } from '../actions';
 import { View, Text, TextInput, Button, Modal, StyleSheet } from 'react-native';
 
-const NewListScreen = props => (
-    <View>
-        <Text>Hello there</Text>
-        <TextInput></TextInput>
-    </View>
-);
+const NewListScreen = props => {
+    const [enteredList, setEnteredList] = useState('');
+
+    const inputChangeHandler = enteredText => {
+        setEnteredList(enteredText);
+    };
+    return (
+        <View>
+            <Text>Hello there</Text>
+            <TextInput
+                style={styles.inputText}
+                onChangeText={inputChangeHandler}
+            ></TextInput>
+            <Button
+                title="Add"
+                onPress={() => props.dispatch(addList(enteredList))}
+            />
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
     inputText: {
@@ -15,4 +31,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default NewListScreen;
+export default connect(null, null)(NewListScreen);

@@ -1,5 +1,12 @@
 # Change log
 
+## V. 0.1.0 - Mar. 20.2020
+
+**Addedd**
+
+-   Navigation to lists
+-   Added image to-do.png
+
 ## V. 0.0.4 - Mar. 10.2020
 
 **Added**

@@ -8,10 +8,6 @@ interface IMainProps {
 }
 
 const MainTemplate: FC<IMainProps> = props => {
-    {
-        console.log(props.nav);
-    }
-
     return (
         <View>
             <MainList nav={props.nav}></MainList>

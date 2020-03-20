@@ -6,7 +6,11 @@ import MainTemplate from './components/templates/MainTemplate';
 import NavigationToDo from './navigation/ToDoNavigation';
 
 export default function App() {
-    return <NavigationToDo />;
+    return (
+        <Provider store={stororo}>
+            <NavigationToDo />
+        </Provider>
+    );
 }
 
 const styles = StyleSheet.create({
