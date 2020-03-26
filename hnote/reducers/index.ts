@@ -2,14 +2,11 @@ const initalState = {
     counter: 1,
     defaultLists: [{ id: 'MyDay' }],
     userLists: [],
+    tasks: [],
 };
 
 const rootReducer = (state = initalState, action) => {
     switch (action.type) {
-        case 'ADD_NOTE': {
-            console.log('ADD_NOTE');
-            return state;
-        }
         case 'ADD_LIST': {
             return {
                 ...state,
@@ -22,6 +19,36 @@ const rootReducer = (state = initalState, action) => {
                         text: action.payload.text,
                     },
                 ],
+            };
+        }
+        case 'ADD_TASK_TO_LIST': {
+            return {
+                ...state,
+                tasks: [
+                    ...state.tasks,
+                    {
+                        id: `${state.tasks.length}-${Math.floor(
+                            Math.random() * 1000
+                        )}`,
+                        list: action.payload.listID,
+                        content: action.payload.content,
+                    },
+                ],
+            };
+        }
+        case 'UPDATE_TASK': {
+            return {
+                ...state,
+                tasks: state.tasks.map(task => {
+                    if (task.id === action.payload.itemID) {
+                        return {
+                            ...task,
+                            content: action.payload.content,
+                        };
+                    } else {
+                        return task;
+                    }
+                }),
             };
         }
         default: {
