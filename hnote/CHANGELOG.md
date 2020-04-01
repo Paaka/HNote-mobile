@@ -2,6 +2,10 @@
 
 ## V. 0.2.0 - April 01.2020
 
+**Added**
+
+-   Single task screen
+
 **Changes**
 
 -   Modified NewList Form

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
@@ -9,12 +9,15 @@ const Wrapper = styled.View`
 
 const SingleTask = props => {
     return (
-        <Wrapper>
-            <TextInput
+        <TouchableOpacity onPress={props.onPress}>
+            <Wrapper>
+                {/* <TextInput
                 value={props.value}
                 onChangeText={props.onChange}
-            ></TextInput>
-        </Wrapper>
+            ></TextInput> */}
+                <Text>{props.value}</Text>
+            </Wrapper>
+        </TouchableOpacity>
     );
 };
 
