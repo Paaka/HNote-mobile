@@ -1,14 +1,9 @@
-import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import styled from 'styled-components';
 
-const TitleText = props => <Text style={styles.Title}>{props.children}</Text>;
-
-const styles = StyleSheet.create({
-    Title: {
-        fontSize: 30,
-        fontWeight: '700',
-        color: 'royalblue',
-    },
-});
+const TitleText = styled.Text`
+    font-size: 30px;
+    font-weight: 700;
+    color: ${({ color }) => (color ? color : 'royalblue')};
+`;
 
 export default TitleText;

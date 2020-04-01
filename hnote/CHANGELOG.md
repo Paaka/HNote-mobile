@@ -1,8 +1,25 @@
 # Change log
 
+## V. 0.2.0 - April 01.2020
+
+**Changes**
+
+-   Modified NewList Form
+
+## V. 0.1.1 - Mar. 26.2020
+
+**Changes**
+
+-   Updated whole List Screen
+
+**Added**
+
+-   SingleTask compontent
+-   Actions to create new task and updating text in it.
+
 ## V. 0.1.0 - Mar. 20.2020
 
-**Addedd**
+**Added**
 
 -   Navigation to lists
 -   Added image to-do.png
