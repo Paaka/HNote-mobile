@@ -7,7 +7,8 @@ import styled from 'styled-components';
 import SingleTask from '../components/molecules/SingleTask';
 
 const Wrapper = styled.View`
-    display: ${props => (props.isDetailOpen ? 'none' : 'flex')};
+    flex: 1;
+    background-color: rgb(107, 121, 132);
 `;
 
 const ListScreen = props => {
@@ -19,13 +20,12 @@ const ListScreen = props => {
 
     const listID = props.navigation.getParam('listId');
     const allMyTasks = props.tasks.filter(task => task.list === listID);
-    console.log(allMyTasks[0]);
 
     const detailOpenHandler = () => {
         props.dispatch(addTaskToList(listID, enteredText));
     };
 
-    const sayHello = item => {
+    const navigateToSingleTaskScreen = item => {
         props.navigation.navigate({
             routeName: 'TaskPage',
             params: {
@@ -34,24 +34,20 @@ const ListScreen = props => {
         });
     };
     return (
-        <View>
-            <Wrapper>
-                <TextInput onChangeText={inputChangeHandler}></TextInput>
-                <Button title="Add" onPress={() => detailOpenHandler()} />
-                <ScrollView>
-                    {allMyTasks.map(item => (
-                        <SingleTask
-                            key={item.id}
-                            value={item.content}
-                            // onChange={str =>
-                            //     props.dispatch(updateTask(item.id, str))
-                            // }
-                            onPress={item => sayHello(item)}
-                        />
-                    ))}
-                </ScrollView>
-            </Wrapper>
-        </View>
+        <Wrapper>
+            <TextInput onChangeText={inputChangeHandler}></TextInput>
+            <Button title="Add" onPress={() => detailOpenHandler()} />
+            <ScrollView>
+                {allMyTasks.map(item => (
+                    <SingleTask
+                        key={item.id}
+                        value={item.content}
+                        isFinished={item.isDone}
+                        onPress={() => navigateToSingleTaskScreen(item)}
+                    />
+                ))}
+            </ScrollView>
+        </Wrapper>
     );
 };
 

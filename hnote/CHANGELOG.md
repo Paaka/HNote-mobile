@@ -1,5 +1,12 @@
 # Change log
 
+## V. 0.2.1 - April 02.2020
+
+**Changes**
+
+-   You can update your task (finished/unfinished),
+-   Improved styling of aplication.
+
 ## V. 0.2.0 - April 01.2020
 
 **Added**

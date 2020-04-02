@@ -32,6 +32,7 @@ const rootReducer = (state = initalState, action) => {
                         )}`,
                         list: action.payload.listID,
                         content: action.payload.content,
+                        isDone: false,
                     },
                 ],
             };
@@ -47,6 +48,21 @@ const rootReducer = (state = initalState, action) => {
                         };
                     } else {
                         return task;
+                    }
+                }),
+            };
+        }
+        case 'UPDATE_TASK_IS_FINISHED': {
+            return {
+                ...state,
+                tasks: state.tasks.map(item => {
+                    if (item.id === action.payload.itemID) {
+                        return {
+                            ...item,
+                            isDone: action.payload.isDone,
+                        };
+                    } else {
+                        return item;
                     }
                 }),
             };
