@@ -33,6 +33,7 @@ const rootReducer = (state = initalState, action) => {
                         list: action.payload.listID,
                         content: action.payload.content,
                         isDone: false,
+                        isImportant: false,
                     },
                 ],
             };
@@ -60,6 +61,21 @@ const rootReducer = (state = initalState, action) => {
                         return {
                             ...item,
                             isDone: action.payload.isDone,
+                        };
+                    } else {
+                        return item;
+                    }
+                }),
+            };
+        }
+        case 'UPDATE_TASK_IS_IMPORTANT': {
+            return {
+                ...state,
+                tasks: state.tasks.map(item => {
+                    if (item.id === action.payload.itemID) {
+                        return {
+                            ...item,
+                            isFinished: action.payload.isFinished,
                         };
                     } else {
                         return item;

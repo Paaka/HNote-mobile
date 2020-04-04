@@ -5,7 +5,23 @@ import { View, TextInput, Text } from 'react-native';
 import { updateTask } from '../actions/index';
 import ButtonIcon from '../components/atoms/ButtonIcon';
 
-import { updateTaskIsFinished } from '../actions';
+import { updateTaskIsFinished, updateIsImportantHandler } from '../actions';
+
+const Wrapper = styled.View`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+    margin-left: 5px;
+`;
+
+const StyledTextInput = styled.TextInput`
+    max-width: 80%;
+    min-width: 80%;
+    font-size: 22px;
+    margin-left: 10px;
+`;
 
 const ItemScreen = props => {
     const taskID = props.navigation.getParam('taskId');
@@ -15,24 +31,34 @@ const ItemScreen = props => {
 
     const EmptyImage = require('../assets/images/circle.png');
     const FullImage = require('../assets/images/right.png');
+    const StarFull = require('../assets/images/starFull.png');
+    const StarOutline = require('../assets/images/starOutline.png');
 
     const isCompletedHandler = () => {
         dispatch(updateTaskIsFinished(task.id, task.isDone));
     };
 
+    const isImportantHandler = () => {
+        dispatch(updateIsImportantHandler(task.id, task.isFinished));
+    };
+
     return (
-        <View>
+        <Wrapper>
             <ButtonIcon
                 onClick={isCompletedHandler}
                 image={task.isDone ? FullImage : EmptyImage}
             />
-            <TextInput
+            <StyledTextInput
                 onChange={str =>
                     dispatch(updateTask(task.id, str.nativeEvent.text))
                 }
                 value={task.content}
             />
-        </View>
+            <ButtonIcon
+                onClick={isImportantHandler}
+                image={task.isFinished ? StarFull : StarOutline}
+            />
+        </Wrapper>
     );
 };
 

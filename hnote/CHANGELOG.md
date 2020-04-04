@@ -1,5 +1,11 @@
 # Change log
 
+## V. 0.2.2 - April 04, 2020
+
+**Added**
+
+-   starFull.png, starOutline.png
+
 ## V. 0.2.1 - April 02.2020
 
 **Changes**

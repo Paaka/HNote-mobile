@@ -28,12 +28,21 @@ export const updateTask = (itemId: string, updatedValue: any) => {
 };
 
 export const updateTaskIsFinished = (itemId: string, active: boolean) => {
-    console.log(!active);
     return {
         type: 'UPDATE_TASK_IS_FINISHED',
         payload: {
             itemID: itemId,
             isDone: !active,
+        },
+    };
+};
+
+export const updateIsImportantHandler = (taskId: string, active: boolean) => {
+    return {
+        type: 'UPDATE_TASK_IS_IMPORTANT',
+        payload: {
+            itemID: taskId,
+            isFinished: !active,
         },
     };
 };
