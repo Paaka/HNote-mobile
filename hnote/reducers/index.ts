@@ -34,6 +34,7 @@ const rootReducer = (state = initalState, action) => {
                         content: action.payload.content,
                         isDone: false,
                         isImportant: false,
+                        subTasks: [],
                     },
                 ],
             };

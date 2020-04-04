@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { View, TextInput, Text } from 'react-native';
 import { updateTask } from '../actions/index';
 import ButtonIcon from '../components/atoms/ButtonIcon';
+import SubTaskInput from '../components/molecules/SubTaskInput';
 
 import { updateTaskIsFinished, updateIsImportantHandler } from '../actions';
 
@@ -21,6 +22,11 @@ const StyledTextInput = styled.TextInput`
     min-width: 80%;
     font-size: 22px;
     margin-left: 10px;
+`;
+
+const InnerWrapper = styled.View`
+    display: flex;
+    flex: 1;
 `;
 
 const ItemScreen = props => {
@@ -43,22 +49,25 @@ const ItemScreen = props => {
     };
 
     return (
-        <Wrapper>
-            <ButtonIcon
-                onClick={isCompletedHandler}
-                image={task.isDone ? FullImage : EmptyImage}
-            />
-            <StyledTextInput
-                onChange={str =>
-                    dispatch(updateTask(task.id, str.nativeEvent.text))
-                }
-                value={task.content}
-            />
-            <ButtonIcon
-                onClick={isImportantHandler}
-                image={task.isFinished ? StarFull : StarOutline}
-            />
-        </Wrapper>
+        <InnerWrapper>
+            <Wrapper>
+                <ButtonIcon
+                    onClick={isCompletedHandler}
+                    image={task.isDone ? FullImage : EmptyImage}
+                />
+                <StyledTextInput
+                    onChange={str =>
+                        dispatch(updateTask(task.id, str.nativeEvent.text))
+                    }
+                    value={task.content}
+                />
+                <ButtonIcon
+                    onClick={isImportantHandler}
+                    image={task.isFinished ? StarFull : StarOutline}
+                />
+            </Wrapper>
+            <SubTaskInput />
+        </InnerWrapper>
     );
 };
 
