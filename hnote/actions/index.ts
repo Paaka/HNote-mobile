@@ -17,6 +17,16 @@ export const addTaskToList = (listId: string, str: string) => {
     };
 };
 
+export const removeTask = (listId: string, taskId: string) => {
+    return {
+        type: 'REMOVE_TASK',
+        payload: {
+            itemID: listId,
+            taskID: taskId,
+        },
+    };
+};
+
 export const updateTask = (itemId: string, updatedValue: any) => {
     return {
         type: 'UPDATE_TASK',

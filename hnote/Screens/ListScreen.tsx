@@ -11,21 +11,21 @@ const Wrapper = styled.View`
     background-color: rgb(107, 121, 132);
 `;
 
-const ListScreen = props => {
+const ListScreen = (props) => {
     const [enteredText, setEnteredText] = useState('');
 
-    const inputChangeHandler = enteredText => {
+    const inputChangeHandler = (enteredText) => {
         setEnteredText(enteredText);
     };
 
     const listID = props.navigation.getParam('listId');
-    const allMyTasks = props.tasks.filter(task => task.list === listID);
+    const allMyTasks = props.tasks.filter((task) => task.list === listID);
 
     const detailOpenHandler = () => {
         props.dispatch(addTaskToList(listID, enteredText));
     };
 
-    const navigateToSingleTaskScreen = item => {
+    const navigateToSingleTaskScreen = (item) => {
         props.navigation.navigate({
             routeName: 'TaskPage',
             params: {
@@ -38,7 +38,7 @@ const ListScreen = props => {
             <TextInput onChangeText={inputChangeHandler}></TextInput>
             <Button title="Add" onPress={() => detailOpenHandler()} />
             <ScrollView>
-                {allMyTasks.map(item => (
+                {allMyTasks.map((item) => (
                     <SingleTask
                         key={item.id}
                         value={item.content}
@@ -51,7 +51,7 @@ const ListScreen = props => {
     );
 };
 
-ListScreen.navigationOptions = someData => {
+ListScreen.navigationOptions = (someData) => {
     const listTitle = someData.navigation.getParam('title');
     return {
         headerTitle: listTitle,

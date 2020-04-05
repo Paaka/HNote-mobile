@@ -42,7 +42,7 @@ const rootReducer = (state = initalState, action) => {
         case 'UPDATE_TASK': {
             return {
                 ...state,
-                tasks: state.tasks.map(task => {
+                tasks: state.tasks.map((task) => {
                     if (task.id === action.payload.itemID) {
                         return {
                             ...task,
@@ -54,10 +54,19 @@ const rootReducer = (state = initalState, action) => {
                 }),
             };
         }
+        case 'REMOVE_TASK': {
+            return {
+                ...state,
+                tasks: [],
+                // tasks: state.tasks.filter(
+                //     (task) => task.id !== action.payload.taskID
+                // ),
+            };
+        }
         case 'UPDATE_TASK_IS_FINISHED': {
             return {
                 ...state,
-                tasks: state.tasks.map(item => {
+                tasks: state.tasks.map((item) => {
                     if (item.id === action.payload.itemID) {
                         return {
                             ...item,
@@ -72,7 +81,7 @@ const rootReducer = (state = initalState, action) => {
         case 'UPDATE_TASK_IS_IMPORTANT': {
             return {
                 ...state,
-                tasks: state.tasks.map(item => {
+                tasks: state.tasks.map((item) => {
                     if (item.id === action.payload.itemID) {
                         return {
                             ...item,

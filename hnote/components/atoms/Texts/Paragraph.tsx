@@ -8,6 +8,7 @@ const Paragraph = styled.Text`
     margin: 0 10px;
     text-decoration: ${({ isFinished }) =>
         isFinished ? 'line-through' : 'none'};
+    color: ${({ color }) => (color ? color : 'black')};
 `;
 
 export default Paragraph;

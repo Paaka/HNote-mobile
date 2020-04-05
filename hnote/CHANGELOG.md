@@ -1,5 +1,12 @@
 # Change log
 
+## V. 0.2.3 - April 05, 2020
+
+**Added**
+
+-   ButtonItem.tsx
+-   delete.png
+
 ## V. 0.2.2 - April 04, 2020
 
 **Added**

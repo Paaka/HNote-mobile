@@ -1,12 +1,16 @@
 import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { View, TextInput, Text } from 'react-native';
-import { updateTask } from '../actions/index';
+import {
+    updateTask,
+    updateTaskIsFinished,
+    updateIsImportantHandler,
+    removeTask,
+} from '../actions';
+
 import ButtonIcon from '../components/atoms/ButtonIcon';
 import SubTaskInput from '../components/molecules/SubTaskInput';
-
-import { updateTaskIsFinished, updateIsImportantHandler } from '../actions';
+import ButtonItem from '../components/molecules/ButtonItem';
 
 const Wrapper = styled.View`
     display: flex;
@@ -14,7 +18,9 @@ const Wrapper = styled.View`
     align-items: center;
     width: 100%;
     margin-top: 15px;
-    margin-left: 5px;
+    border-bottom-color: #ccc;
+    border-bottom-width: 2px;
+    padding-bottom: 10px;
 `;
 
 const StyledTextInput = styled.TextInput`
@@ -29,9 +35,9 @@ const InnerWrapper = styled.View`
     flex: 1;
 `;
 
-const ItemScreen = props => {
+const ItemScreen = (props) => {
     const taskID = props.navigation.getParam('taskId');
-    const arrTask = props.tasks.filter(item => item.id === taskID);
+    const arrTask = props.tasks.filter((item) => item.id === taskID);
     const [task] = arrTask;
     const dispatch = useDispatch();
 
@@ -39,6 +45,7 @@ const ItemScreen = props => {
     const FullImage = require('../assets/images/right.png');
     const StarFull = require('../assets/images/starFull.png');
     const StarOutline = require('../assets/images/starOutline.png');
+    const trashBin = require('../assets/images/delete.png');
 
     const isCompletedHandler = () => {
         dispatch(updateTaskIsFinished(task.id, task.isDone));
@@ -46,6 +53,11 @@ const ItemScreen = props => {
 
     const isImportantHandler = () => {
         dispatch(updateIsImportantHandler(task.id, task.isFinished));
+    };
+
+    const deleteTaskHandler = () => {
+        props.navigation.goBack();
+        dispatch(removeTask(task.list, task.id));
     };
 
     return (
@@ -56,7 +68,7 @@ const ItemScreen = props => {
                     image={task.isDone ? FullImage : EmptyImage}
                 />
                 <StyledTextInput
-                    onChange={str =>
+                    onChange={(str) =>
                         dispatch(updateTask(task.id, str.nativeEvent.text))
                     }
                     value={task.content}
@@ -67,6 +79,9 @@ const ItemScreen = props => {
                 />
             </Wrapper>
             <SubTaskInput />
+            <ButtonItem onClick={deleteTaskHandler} icon={trashBin}>
+                Delete this task
+            </ButtonItem>
         </InnerWrapper>
     );
 };
