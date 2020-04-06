@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, TextInput, Button, ScrollView } from 'react-native';
 import { addTaskToList, updateTask } from '../actions/index';
@@ -13,6 +13,12 @@ const Wrapper = styled.View`
 
 const ListScreen = (props) => {
     const [enteredText, setEnteredText] = useState('');
+
+    useEffect(() => {
+        props.navigation.addListener('didFocus', (payload) => {
+            console.log('Hello');
+        });
+    }, []);
 
     const inputChangeHandler = (enteredText) => {
         setEnteredText(enteredText);
