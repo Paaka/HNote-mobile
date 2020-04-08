@@ -1,5 +1,11 @@
 # Change log
 
+## V. 0.2.4 - April 08, 2020
+
+**Added**
+
+-   Possibility of state changes from the list level.
+
 ## V. 0.2.3 - April 05, 2020
 
 **Added**

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, TextInput, Button, ScrollView } from 'react-native';
-import { addTaskToList, updateTask } from '../actions/index';
+import { TextInput, Button, ScrollView } from 'react-native';
+import { addTaskToList, updateTaskIsFinished } from '../actions/index';
 import styled from 'styled-components';
 
 import SingleTask from '../components/molecules/SingleTask';
@@ -12,20 +12,14 @@ const Wrapper = styled.View`
 `;
 
 const ListScreen = (props) => {
-    const [enteredText, setEnteredText] = useState('');
+    const listID = props.navigation.getParam('listId');
+    const allMyTasks = props.tasks.filter((task) => task.list === listID);
 
-    useEffect(() => {
-        props.navigation.addListener('didFocus', (payload) => {
-            console.log('Hello');
-        });
-    }, []);
+    const [enteredText, setEnteredText] = useState('');
 
     const inputChangeHandler = (enteredText) => {
         setEnteredText(enteredText);
     };
-
-    const listID = props.navigation.getParam('listId');
-    const allMyTasks = props.tasks.filter((task) => task.list === listID);
 
     const detailOpenHandler = () => {
         props.dispatch(addTaskToList(listID, enteredText));
@@ -39,6 +33,11 @@ const ListScreen = (props) => {
             },
         });
     };
+
+    const updateTask = (ID: string, isDone: boolean) => {
+        props.dispatch(updateTaskIsFinished(ID, isDone));
+    };
+
     return (
         <Wrapper>
             <TextInput onChangeText={inputChangeHandler}></TextInput>
@@ -47,6 +46,7 @@ const ListScreen = (props) => {
                 {allMyTasks.map((item) => (
                     <SingleTask
                         key={item.id}
+                        updateFn={() => updateTask(item.id, item.isDone)}
                         value={item.content}
                         isFinished={item.isDone}
                         onPress={() => navigateToSingleTaskScreen(item)}

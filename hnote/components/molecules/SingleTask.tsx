@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import Paragraph from '../atoms/Texts/Paragraph';
 import ButtonIcon from '../atoms/ButtonIcon';
+import TouchableWrapper from '../atoms/Wrappers/TouchableWrapper';
 
 const RowWrapper = styled.View`
     display: flex;
@@ -26,13 +27,18 @@ const Wrapper = styled.View`
 `;
 
 const SingleTask = (props) => {
-    const emptyImg = require('../../assets/images/circle.png');
-    const fullImg = require('../../assets/images/right.png');
     return (
         <RowWrapper>
-            <View>
-                <Ionicons name={'md-checkmark-circle-outline'} size={24} />
-            </View>
+            <TouchableWrapper onPressFn={props.updateFn}>
+                <Ionicons
+                    name={
+                        props.isFinished
+                            ? 'md-checkmark-circle'
+                            : 'md-checkmark-circle-outline'
+                    }
+                    size={32}
+                />
+            </TouchableWrapper>
             <Wrapper>
                 <TouchableOpacity onPress={props.onPress}>
                     <Paragraph isFinished={props.isFinished}>
