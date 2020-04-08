@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import {
     updateTask,
     updateTaskIsFinished,
     updateIsImportantHandler,
-    removeTask,
-    addTaskToList,
 } from '../actions';
 
-import { StackActions, NavigationActions } from 'react-navigation';
-
-import ButtonIcon from '../components/atoms/ButtonIcon';
-import SubTaskInput from '../components/molecules/SubTaskInput';
-import ButtonItem from '../components/molecules/ButtonItem';
+import { View, Text } from 'react-native';
+import SubTaskInput from '../components/molecules/SubTaskForm';
+import IoniconsButton from '../components/atoms/IoniconsButton';
 
 const Wrapper = styled.View`
     display: flex;
@@ -45,20 +41,6 @@ const ItemScreen = (props) => {
 
     const dispatch = useDispatch();
 
-    const EmptyImage = require('../assets/images/circle.png');
-    const FullImage = require('../assets/images/right.png');
-    const StarFull = require('../assets/images/starFull.png');
-    const StarOutline = require('../assets/images/starOutline.png');
-    const trashBin = require('../assets/images/delete.png');
-
-    const resetAction = StackActions.reset({
-        index: 1,
-        actions: [
-            NavigationActions.navigate({ routeName: 'MainPage' }),
-            NavigationActions.navigate({ routeName: 'ListPage' }),
-        ],
-    });
-
     const isCompletedHandler = () => {
         dispatch(updateTaskIsFinished(task.id, task.isDone));
     };
@@ -70,19 +52,31 @@ const ItemScreen = (props) => {
     return (
         <InnerWrapper>
             <Wrapper>
-                <ButtonIcon onClick={isCompletedHandler} image={EmptyImage} />
+                <IoniconsButton
+                    onPressFn={isCompletedHandler}
+                    icon={
+                        task.isDone
+                            ? 'md-checkmark-circle'
+                            : 'md-checkmark-circle-outline'
+                    }
+                />
                 <StyledTextInput
                     onChange={(str) =>
                         dispatch(updateTask(task.id, str.nativeEvent.text))
                     }
                     value={task.content}
                 />
-                <ButtonIcon onClick={isImportantHandler} image={StarOutline} />
+                <IoniconsButton
+                    onPressFn={isImportantHandler}
+                    icon={task.isFinished ? 'md-star' : 'md-star-outline'}
+                />
             </Wrapper>
-            <SubTaskInput />
-            <ButtonItem onClick={() => {}} icon={trashBin}>
-                Delete this task
-            </ButtonItem>
+            {task.subTasks.map((subtask) => (
+                <View key={subtask.id}>
+                    <Text>{subtask.content}</Text>
+                </View>
+            ))}
+            <SubTaskInput id={task.id} />
         </InnerWrapper>
     );
 };

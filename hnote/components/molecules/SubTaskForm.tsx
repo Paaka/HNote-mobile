@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { addSubtask } from '../../actions/index';
+
 import ButtonIcon from '../atoms/ButtonIcon';
 
 const Wrapper = styled.View`
@@ -15,14 +18,17 @@ const StyledTextInput = styled.TextInput`
     margin-left: 10px;
 `;
 
-const SubTaskInput = props => {
+const SubTaskForm = (props) => {
+    const dispatch = useDispatch();
     const AddIcon = require('../../assets/images/add.png');
     const [inputedText, setInputedText] = useState('');
 
-    const addSubTaskHandleler = () => {};
+    const addSubTaskHandleler = () => {
+        dispatch(addSubtask(props.id, inputedText));
+    };
 
-    const changeTextHandleler = str => {
-        console.log(str);
+    const changeTextHandleler = (str) => {
+        setInputedText(str);
     };
 
     return (
@@ -38,4 +44,4 @@ const SubTaskInput = props => {
     );
 };
 
-export default SubTaskInput;
+export default SubTaskForm;

@@ -1,3 +1,5 @@
+import * as types from './types';
+
 export const addList: any = (str: string) => {
     return {
         type: 'ADD_LIST',
@@ -52,6 +54,16 @@ export const updateIsImportantHandler = (taskId: string, active: boolean) => {
         payload: {
             itemID: taskId,
             isFinished: !active,
+        },
+    };
+};
+
+export const addSubtask = (taskId: string, value: string) => {
+    return {
+        type: types.ADD_SUBTASK,
+        payload: {
+            taskID: taskId,
+            subTaskcontent: value,
         },
     };
 };

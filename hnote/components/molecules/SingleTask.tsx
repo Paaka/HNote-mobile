@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
@@ -9,7 +8,7 @@ import Paragraph from '../atoms/Texts/Paragraph';
 import TouchableWrapper from '../atoms/Wrappers/TouchableWrapper';
 import IoniconsButton from '../atoms/IoniconsButton';
 
-const RowWrapper = styled.View`
+const Wrapper = styled.View`
     display: flex;
     flex-direction: row;
     background-color: white;
@@ -20,7 +19,7 @@ const RowWrapper = styled.View`
     margin: 5px 0px;
 `;
 
-const Wrapper = styled.View`
+const ContentWrapper = styled.View`
     padding: 10px 5px;
     min-width: 85%;
 `;
@@ -42,11 +41,11 @@ const SingleTask = ({ task, ...props }) => {
     };
 
     const updateTask = () => {
-        props.dispatch(updateTaskIsFinished(task.id, task.isDone));
+        dispatch(updateTaskIsFinished(task.id, task.isDone));
     };
 
     return (
-        <RowWrapper>
+        <Wrapper>
             <IoniconsButton
                 icon={
                     props.isFinished
@@ -56,15 +55,15 @@ const SingleTask = ({ task, ...props }) => {
                 onPressFn={updateTask}
             />
             <TouchableWrapper onPressFn={navigateToSingleTaskScreen}>
-                <Wrapper>
+                <ContentWrapper>
                     <Paragraph isFinished={props.isFinished}>
                         {props.value}
                     </Paragraph>
-                </Wrapper>
+                </ContentWrapper>
             </TouchableWrapper>
             <IoniconsButton icon="md-close" onPressFn={deletTask} />
-        </RowWrapper>
+        </Wrapper>
     );
 };
 
-export default connect(null, null)(SingleTask);
+export default SingleTask;

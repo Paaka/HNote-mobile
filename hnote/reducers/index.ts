@@ -1,3 +1,5 @@
+import * as Types from '../actions/types';
+
 const initalState = {
     counter: 1,
     defaultLists: [{ id: 'MyDay' }],
@@ -88,6 +90,30 @@ const rootReducer = (state = initalState, action) => {
                         };
                     } else {
                         return item;
+                    }
+                }),
+            };
+        }
+        case Types.ADD_SUBTASK: {
+            return {
+                ...state,
+                tasks: state.tasks.map((task) => {
+                    if (task.id === action.payload.taskID) {
+                        console.log(task.id);
+                        return {
+                            ...task,
+                            subTasks: [
+                                ...task.subTasks,
+                                {
+                                    id: `${task.subTasks.length}-${Math.floor(
+                                        Math.random() * 1000
+                                    )}`,
+                                    content: action.payload.subTaskcontent,
+                                },
+                            ],
+                        };
+                    } else {
+                        return task;
                     }
                 }),
             };

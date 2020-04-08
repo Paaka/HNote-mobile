@@ -8,7 +8,8 @@
 
 **Added**
 
--   IoniconsButton component
+-   IoniconsButton component,
+-   Subtasks,
 -   Capabilities of deleting tasks and state changes, from the list level.
 
 ## V. 0.2.3 - April 05, 2020
