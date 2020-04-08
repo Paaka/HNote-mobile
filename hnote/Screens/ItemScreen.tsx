@@ -67,12 +67,6 @@ const ItemScreen = (props) => {
         dispatch(updateIsImportantHandler(task.id, task.isFinished));
     };
 
-    const deleteTaskHandler = () => {
-        props.navigation.dispatch(resetAction);
-
-        dispatch(removeTask(task.list, task.id));
-    };
-
     return (
         <InnerWrapper>
             <Wrapper>
@@ -86,7 +80,7 @@ const ItemScreen = (props) => {
                 <ButtonIcon onClick={isImportantHandler} image={StarOutline} />
             </Wrapper>
             <SubTaskInput />
-            <ButtonItem onClick={deleteTaskHandler} icon={trashBin}>
+            <ButtonItem onClick={() => {}} icon={trashBin}>
                 Delete this task
             </ButtonItem>
         </InnerWrapper>

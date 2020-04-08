@@ -25,18 +25,7 @@ const ListScreen = (props) => {
         props.dispatch(addTaskToList(listID, enteredText));
     };
 
-    const navigateToSingleTaskScreen = (item) => {
-        props.navigation.navigate({
-            routeName: 'TaskPage',
-            params: {
-                taskId: item.id,
-            },
-        });
-    };
-
-    const updateTask = (ID: string, isDone: boolean) => {
-        props.dispatch(updateTaskIsFinished(ID, isDone));
-    };
+    const navigateToSingleTaskScreen = (item) => {};
 
     return (
         <Wrapper>
@@ -47,10 +36,10 @@ const ListScreen = (props) => {
                     <SingleTask
                         key={item.id}
                         id={item.id}
-                        updateFn={() => updateTask(item.id, item.isDone)}
                         value={item.content}
                         isFinished={item.isDone}
-                        onPress={() => navigateToSingleTaskScreen(item)}
+                        task={item}
+                        navigation={props.navigation}
                     />
                 ))}
             </ScrollView>

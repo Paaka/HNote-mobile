@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { TouchableOpacity } from 'react-native';
 
-interface ITouchableWrapper {
+export interface ITouchableWrapper {
     onPressFn(): Function | void;
 }
 

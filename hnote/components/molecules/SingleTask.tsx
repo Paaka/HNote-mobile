@@ -1,14 +1,13 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Ionicons } from '@expo/vector-icons';
-import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 
-import { removeTask } from '../../actions/index';
+import { removeTask, updateTaskIsFinished } from '../../actions/index';
 
 import Paragraph from '../atoms/Texts/Paragraph';
 import TouchableWrapper from '../atoms/Wrappers/TouchableWrapper';
+import IoniconsButton from '../atoms/IoniconsButton';
 
 const RowWrapper = styled.View`
     display: flex;
@@ -22,40 +21,48 @@ const RowWrapper = styled.View`
 `;
 
 const Wrapper = styled.View`
-    display: flex;
-    flex-direction: row;
     padding: 10px 5px;
-    width: 85%;
+    min-width: 85%;
 `;
 
-const SingleTask = (props) => {
+const SingleTask = ({ task, ...props }) => {
     const dispatch = useDispatch();
-    const deletDis = () => {
+
+    const deletTask = () => {
         dispatch(removeTask(props.id));
+    };
+
+    const navigateToSingleTaskScreen = () => {
+        props.navigation.navigate({
+            routeName: 'TaskPage',
+            params: {
+                taskId: props.id,
+            },
+        });
+    };
+
+    const updateTask = () => {
+        props.dispatch(updateTaskIsFinished(task.id, task.isDone));
     };
 
     return (
         <RowWrapper>
-            <TouchableWrapper onPressFn={props.updateFn}>
-                <Ionicons
-                    name={
-                        props.isFinished
-                            ? 'md-checkmark-circle'
-                            : 'md-checkmark-circle-outline'
-                    }
-                    size={32}
-                />
-            </TouchableWrapper>
-            <Wrapper>
-                <TouchableOpacity onPress={props.onPress}>
+            <IoniconsButton
+                icon={
+                    props.isFinished
+                        ? 'md-checkmark-circle'
+                        : 'md-checkmark-circle-outline'
+                }
+                onPressFn={updateTask}
+            />
+            <TouchableWrapper onPressFn={navigateToSingleTaskScreen}>
+                <Wrapper>
                     <Paragraph isFinished={props.isFinished}>
                         {props.value}
                     </Paragraph>
-                </TouchableOpacity>
-            </Wrapper>
-            <TouchableWrapper onPressFn={deletDis}>
-                <Ionicons name="md-close" size={32} />
+                </Wrapper>
             </TouchableWrapper>
+            <IoniconsButton icon="md-close" onPressFn={deletTask} />
         </RowWrapper>
     );
 };

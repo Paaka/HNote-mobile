@@ -2,8 +2,13 @@
 
 ## V. 0.2.4 - April 08, 2020
 
+**Changes**
+
+-   Minor refactoring
+
 **Added**
 
+-   IoniconsButton component
 -   Capabilities of deleting tasks and state changes, from the list level.
 
 ## V. 0.2.3 - April 05, 2020
