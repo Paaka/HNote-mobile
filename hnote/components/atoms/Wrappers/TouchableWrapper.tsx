@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { TouchableOpacity } from 'react-native';
 
 interface ITouchableWrapper {
-    onPressFn(): Function;
+    onPressFn(): Function | void;
 }
 
 const defaultOnPress = () => {

@@ -57,10 +57,9 @@ const rootReducer = (state = initalState, action) => {
         case 'REMOVE_TASK': {
             return {
                 ...state,
-                tasks: [],
-                // tasks: state.tasks.filter(
-                //     (task) => task.id !== action.payload.taskID
-                // ),
+                tasks: state.tasks.filter(
+                    (task) => task.id !== action.payload.taskID
+                ),
             };
         }
         case 'UPDATE_TASK_IS_FINISHED': {

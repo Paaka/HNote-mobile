@@ -17,11 +17,10 @@ export const addTaskToList = (listId: string, str: string) => {
     };
 };
 
-export const removeTask = (listId: string, taskId: string) => {
+export const removeTask = (taskId: string) => {
     return {
         type: 'REMOVE_TASK',
         payload: {
-            itemID: listId,
             taskID: taskId,
         },
     };

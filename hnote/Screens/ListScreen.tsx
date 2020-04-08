@@ -46,6 +46,7 @@ const ListScreen = (props) => {
                 {allMyTasks.map((item) => (
                     <SingleTask
                         key={item.id}
+                        id={item.id}
                         updateFn={() => updateTask(item.id, item.isDone)}
                         value={item.content}
                         isFinished={item.isDone}

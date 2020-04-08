@@ -1,11 +1,13 @@
 import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
-import styled from 'styled-components';
+import { TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
+import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+
+import { removeTask } from '../../actions/index';
 
 import Paragraph from '../atoms/Texts/Paragraph';
-import ButtonIcon from '../atoms/ButtonIcon';
 import TouchableWrapper from '../atoms/Wrappers/TouchableWrapper';
 
 const RowWrapper = styled.View`
@@ -23,10 +25,15 @@ const Wrapper = styled.View`
     display: flex;
     flex-direction: row;
     padding: 10px 5px;
-    width: 80%;
+    width: 85%;
 `;
 
 const SingleTask = (props) => {
+    const dispatch = useDispatch();
+    const deletDis = () => {
+        dispatch(removeTask(props.id));
+    };
+
     return (
         <RowWrapper>
             <TouchableWrapper onPressFn={props.updateFn}>
@@ -46,6 +53,9 @@ const SingleTask = (props) => {
                     </Paragraph>
                 </TouchableOpacity>
             </Wrapper>
+            <TouchableWrapper onPressFn={deletDis}>
+                <Ionicons name="md-close" size={32} />
+            </TouchableWrapper>
         </RowWrapper>
     );
 };
