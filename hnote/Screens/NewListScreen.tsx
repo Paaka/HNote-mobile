@@ -23,10 +23,10 @@ const FlexWrapper = styled.View`
     justify-content: space-evenly;
 `;
 
-const NewListScreen = props => {
+const NewListScreen = (props) => {
     const [enteredList, setEnteredList] = useState('');
 
-    const inputChangeHandler = enteredText => {
+    const inputChangeHandler = (enteredText) => {
         setEnteredList(enteredText);
     };
 
@@ -35,13 +35,18 @@ const NewListScreen = props => {
         props.navigation.goBack();
         props.dispatch(addList(enteredList));
     };
+
+    const goBackHandler = () => {
+        props.navigation.goBack();
+    };
+
     return (
         <Wrapper>
             <Heading>Add List:</Heading>
             <Input onChangeText={inputChangeHandler}></Input>
             <FlexWrapper>
                 <Button onPress={addListHandler}>Add Item</Button>
-                <Button bgColor="red" onPress={props.goBack}>
+                <Button bgColor="red" onPress={goBackHandler}>
                     Cancel
                 </Button>
             </FlexWrapper>

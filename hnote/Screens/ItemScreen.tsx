@@ -7,6 +7,7 @@ import {
     updateIsImportantHandler,
 } from '../actions';
 
+import SubtaskItem from '../components/molecules/FormItems/SubtaskItem';
 import { View, Text } from 'react-native';
 import SubTaskInput from '../components/molecules/SubTaskForm';
 import IoniconsButton from '../components/atoms/IoniconsButton';
@@ -18,7 +19,7 @@ const Wrapper = styled.View`
     width: 100%;
     margin-top: 15px;
     border-bottom-color: #ccc;
-    border-bottom-width: 2px;
+    border-bottom-width: 3px;
     padding-bottom: 10px;
 `;
 
@@ -72,9 +73,7 @@ const ItemScreen = (props) => {
                 />
             </Wrapper>
             {task.subTasks.map((subtask) => (
-                <View key={subtask.id}>
-                    <Text>{subtask.content}</Text>
-                </View>
+                <SubtaskItem key={subtask.id}></SubtaskItem>
             ))}
             <SubTaskInput id={task.id} />
         </InnerWrapper>

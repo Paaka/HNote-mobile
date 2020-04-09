@@ -1,5 +1,12 @@
 # Change log
 
+## V. 0.2.5 - April 09, 2020
+
+**Changes**
+
+-   Styled subtasks single item.
+-   Fixed navigation bug in New List screeen.
+
 ## V. 0.2.4 - April 08, 2020
 
 **Changes**
