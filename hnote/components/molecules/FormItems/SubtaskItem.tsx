@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import IoniconsButton from '../../atoms/IoniconsButton';
+
+import { updateSubtask } from '../../../actions/index';
 
 const Wrapper = styled.View`
     display: flex;
@@ -28,7 +31,11 @@ const MarginLeft = styled.View`
 
 interface ISubtaskItem {}
 
-const SubtaskItem = (props) => {
+const SubtaskItem = ({ item, taskID }) => {
+    const dispatch = useDispatch();
+    const changeInputHandler = (str) => {
+        dispatch(updateSubtask(taskID, item.id, str));
+    };
     return (
         <Wrapper>
             <MarginLeft mLeft={10} mRight={10}>
@@ -41,7 +48,10 @@ const SubtaskItem = (props) => {
                 />
             </MarginLeft>
             <BorderWrapper>
-                <StyledInput />
+                <StyledInput
+                    value={item.content}
+                    onChangeText={changeInputHandler}
+                />
                 <MarginLeft mLeft={15} mRight={0}>
                     <IoniconsButton
                         size={22}

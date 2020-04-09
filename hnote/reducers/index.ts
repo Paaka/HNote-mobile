@@ -118,6 +118,28 @@ const rootReducer = (state = initalState, action) => {
                 }),
             };
         }
+        case Types.UPDATE_SUBTASK: {
+            return {
+                ...state,
+                tasks: state.tasks.map((task) => {
+                    if (task.id === action.payload.taskID) {
+                        return {
+                            ...task,
+                            subTasks: task.subTasks.map((subtask) => {
+                                if (subtask.id === action.payload.subtaskID) {
+                                    return {
+                                        ...subtask,
+                                        content: action.payload.updatedContent,
+                                    };
+                                }
+                            }),
+                        };
+                    } else {
+                        return task;
+                    }
+                }),
+            };
+        }
         default: {
             return state;
         }

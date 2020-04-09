@@ -67,3 +67,18 @@ export const addSubtask = (taskId: string, value: string) => {
         },
     };
 };
+
+export const updateSubtask = (
+    taskID: string,
+    subtaskID: string,
+    value: string
+) => {
+    return {
+        type: types.UPDATE_SUBTASK,
+        payload: {
+            taskID,
+            subtaskID,
+            updatedContent: value,
+        },
+    };
+};

@@ -73,7 +73,11 @@ const ItemScreen = (props) => {
                 />
             </Wrapper>
             {task.subTasks.map((subtask) => (
-                <SubtaskItem key={subtask.id}></SubtaskItem>
+                <SubtaskItem
+                    key={subtask.id}
+                    item={subtask}
+                    taskID={taskID}
+                ></SubtaskItem>
             ))}
             <SubTaskInput id={task.id} />
         </InnerWrapper>

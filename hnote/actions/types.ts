@@ -1,1 +1,3 @@
 export const ADD_SUBTASK = 'ADD_SUBTASK';
+
+export const UPDATE_SUBTASK = 'UPDATE_SUBTASK';
