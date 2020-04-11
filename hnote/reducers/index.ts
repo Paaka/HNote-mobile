@@ -1,4 +1,5 @@
 import * as Types from '../actions/types';
+import SubtaskItem from '../components/molecules/FormItems/SubtaskItem';
 
 const initalState = {
     counter: 1,
@@ -9,7 +10,7 @@ const initalState = {
 
 const rootReducer = (state = initalState, action) => {
     switch (action.type) {
-        case 'ADD_LIST': {
+        case Types.ADD_LIST: {
             return {
                 ...state,
                 userLists: [
@@ -23,7 +24,7 @@ const rootReducer = (state = initalState, action) => {
                 ],
             };
         }
-        case 'ADD_TASK_TO_LIST': {
+        case Types.ADD_TASK_TO_LIST: {
             return {
                 ...state,
                 tasks: [
@@ -41,7 +42,7 @@ const rootReducer = (state = initalState, action) => {
                 ],
             };
         }
-        case 'UPDATE_TASK': {
+        case Types.UPDATE_TASK: {
             return {
                 ...state,
                 tasks: state.tasks.map((task) => {
@@ -56,7 +57,7 @@ const rootReducer = (state = initalState, action) => {
                 }),
             };
         }
-        case 'REMOVE_TASK': {
+        case Types.REMOVE_TASK_FROM_LIST: {
             return {
                 ...state,
                 tasks: state.tasks.filter(
@@ -64,7 +65,7 @@ const rootReducer = (state = initalState, action) => {
                 ),
             };
         }
-        case 'UPDATE_TASK_IS_FINISHED': {
+        case Types.UPDATE_IS_FINISHED_IN_TASK: {
             return {
                 ...state,
                 tasks: state.tasks.map((item) => {
@@ -79,7 +80,7 @@ const rootReducer = (state = initalState, action) => {
                 }),
             };
         }
-        case 'UPDATE_TASK_IS_IMPORTANT': {
+        case Types.UPDATE_IS_IMPORTANT_IN_TASK: {
             return {
                 ...state,
                 tasks: state.tasks.map((item) => {
@@ -99,7 +100,6 @@ const rootReducer = (state = initalState, action) => {
                 ...state,
                 tasks: state.tasks.map((task) => {
                     if (task.id === action.payload.taskID) {
-                        console.log(task.id);
                         return {
                             ...task,
                             subTasks: [
@@ -109,6 +109,7 @@ const rootReducer = (state = initalState, action) => {
                                         Math.random() * 1000
                                     )}`,
                                     content: action.payload.subTaskcontent,
+                                    isDone: false,
                                 },
                             ],
                         };
@@ -130,6 +131,54 @@ const rootReducer = (state = initalState, action) => {
                                     return {
                                         ...subtask,
                                         content: action.payload.updatedContent,
+                                    };
+                                } else {
+                                    return {
+                                        ...subtask,
+                                    };
+                                }
+                            }),
+                        };
+                    } else {
+                        return task;
+                    }
+                }),
+            };
+        }
+        case Types.DELETE_SUBTASK: {
+            return {
+                ...state,
+                tasks: state.tasks.map((task) => {
+                    if (task.id === action.payload.taskID) {
+                        return {
+                            ...task,
+                            subTasks: task.subTasks.filter(
+                                (subtask) =>
+                                    subtask.id !== action.payload.subtaskID
+                            ),
+                        };
+                    } else {
+                        return task;
+                    }
+                }),
+            };
+        }
+        case Types.UPDATE_IS_DONE_SUBTASK: {
+            return {
+                ...state,
+                tasks: state.tasks.map((task) => {
+                    if (task.id === action.payload.taskID) {
+                        return {
+                            ...task,
+                            subTasks: task.subTasks.map((subtask) => {
+                                if (subtask.id === action.payload.subtaskID) {
+                                    return {
+                                        ...subtask,
+                                        isDone: action.payload.isSubtaskDone,
+                                    };
+                                } else {
+                                    return {
+                                        ...subtask,
                                     };
                                 }
                             }),

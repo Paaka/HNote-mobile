@@ -2,7 +2,7 @@ import * as types from './types';
 
 export const addList: any = (str: string) => {
     return {
-        type: 'ADD_LIST',
+        type: types.ADD_LIST,
         payload: {
             text: str,
         },
@@ -11,7 +11,7 @@ export const addList: any = (str: string) => {
 
 export const addTaskToList = (listId: string, str: string) => {
     return {
-        type: 'ADD_TASK_TO_LIST',
+        type: types.ADD_TASK_TO_LIST,
         payload: {
             listID: listId,
             content: str,
@@ -21,7 +21,7 @@ export const addTaskToList = (listId: string, str: string) => {
 
 export const removeTask = (taskId: string) => {
     return {
-        type: 'REMOVE_TASK',
+        type: types.REMOVE_TASK_FROM_LIST,
         payload: {
             taskID: taskId,
         },
@@ -30,7 +30,7 @@ export const removeTask = (taskId: string) => {
 
 export const updateTask = (itemId: string, updatedValue: any) => {
     return {
-        type: 'UPDATE_TASK',
+        type: types.UPDATE_TASK,
         payload: {
             itemID: itemId,
             content: updatedValue,
@@ -40,7 +40,7 @@ export const updateTask = (itemId: string, updatedValue: any) => {
 
 export const updateTaskIsFinished = (itemId: string, active: boolean) => {
     return {
-        type: 'UPDATE_TASK_IS_FINISHED',
+        type: types.UPDATE_IS_FINISHED_IN_TASK,
         payload: {
             itemID: itemId,
             isDone: !active,
@@ -50,7 +50,7 @@ export const updateTaskIsFinished = (itemId: string, active: boolean) => {
 
 export const updateIsImportantHandler = (taskId: string, active: boolean) => {
     return {
-        type: 'UPDATE_TASK_IS_IMPORTANT',
+        type: types.UPDATE_IS_IMPORTANT_IN_TASK,
         payload: {
             itemID: taskId,
             isFinished: !active,
@@ -79,6 +79,31 @@ export const updateSubtask = (
             taskID,
             subtaskID,
             updatedContent: value,
+        },
+    };
+};
+
+export const deleteSubtask = (taskID: string, subtaskID: string) => {
+    return {
+        type: types.DELETE_SUBTASK,
+        payload: {
+            taskID,
+            subtaskID,
+        },
+    };
+};
+
+export const updateIsSubtaskIsDone = (
+    taskID: string,
+    subtaskID: string,
+    isSubtaskDone: boolean
+) => {
+    return {
+        type: types.UPDATE_IS_DONE_SUBTASK,
+        payload: {
+            taskID,
+            subtaskID,
+            isSubtaskDone,
         },
     };
 };

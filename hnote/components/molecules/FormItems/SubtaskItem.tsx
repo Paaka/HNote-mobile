@@ -3,7 +3,11 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import IoniconsButton from '../../atoms/IoniconsButton';
 
-import { updateSubtask } from '../../../actions/index';
+import {
+    updateSubtask,
+    deleteSubtask,
+    updateIsSubtaskIsDone,
+} from '../../../actions/index';
 
 const Wrapper = styled.View`
     display: flex;
@@ -20,13 +24,14 @@ const BorderWrapper = styled.View`
     border-bottom-color: #ccc;
     align-items: center;
 `;
+
 const StyledInput = styled.TextInput`
     width: 90%;
 `;
 
 const MarginLeft = styled.View`
-    margin-left: ${(props) => props.mLeft};
-    margin-right: ${(props) => props.mRight};
+    margin-left: ${(props) => props.mLeft + 'px'};
+    margin-right: ${(props) => props.mRight + 'px'};
 `;
 
 interface ISubtaskItem {}
@@ -36,15 +41,26 @@ const SubtaskItem = ({ item, taskID }) => {
     const changeInputHandler = (str) => {
         dispatch(updateSubtask(taskID, item.id, str));
     };
+
+    const deleteSubtaskHandler = () => {
+        dispatch(deleteSubtask(taskID, item.id));
+    };
+
+    const isSubtaskDoneHandler = () => {
+        dispatch(updateIsSubtaskIsDone(taskID, item.id, !item.isDone));
+    };
+
     return (
         <Wrapper>
             <MarginLeft mLeft={10} mRight={10}>
                 <IoniconsButton
                     size={28}
-                    icon="md-checkmark-circle-outline"
-                    onPressFn={() => {
-                        console.log('Tha');
-                    }}
+                    icon={
+                        item.isDone
+                            ? 'md-checkmark-circle'
+                            : 'md-checkmark-circle-outline'
+                    }
+                    onPressFn={isSubtaskDoneHandler}
                 />
             </MarginLeft>
             <BorderWrapper>
@@ -56,9 +72,7 @@ const SubtaskItem = ({ item, taskID }) => {
                     <IoniconsButton
                         size={22}
                         icon="md-close"
-                        onPressFn={() => {
-                            console.log('deletDis');
-                        }}
+                        onPressFn={deleteSubtaskHandler}
                     />
                 </MarginLeft>
             </BorderWrapper>

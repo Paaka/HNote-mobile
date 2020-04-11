@@ -8,7 +8,7 @@ import {
 } from '../actions';
 
 import SubtaskItem from '../components/molecules/FormItems/SubtaskItem';
-import { View, Text } from 'react-native';
+import { ScrollView } from 'react-native';
 import SubTaskInput from '../components/molecules/SubTaskForm';
 import IoniconsButton from '../components/atoms/IoniconsButton';
 
@@ -18,9 +18,13 @@ const Wrapper = styled.View`
     align-items: center;
     width: 100%;
     margin-top: 15px;
+    padding-bottom: 10px;
+`;
+
+const TopItemsWrapper = styled.View`
+    max-height: 33%;
     border-bottom-color: #ccc;
     border-bottom-width: 3px;
-    padding-bottom: 10px;
 `;
 
 const StyledTextInput = styled.TextInput`
@@ -52,34 +56,38 @@ const ItemScreen = (props) => {
 
     return (
         <InnerWrapper>
-            <Wrapper>
-                <IoniconsButton
-                    onPressFn={isCompletedHandler}
-                    icon={
-                        task.isDone
-                            ? 'md-checkmark-circle'
-                            : 'md-checkmark-circle-outline'
-                    }
-                />
-                <StyledTextInput
-                    onChange={(str) =>
-                        dispatch(updateTask(task.id, str.nativeEvent.text))
-                    }
-                    value={task.content}
-                />
-                <IoniconsButton
-                    onPressFn={isImportantHandler}
-                    icon={task.isFinished ? 'md-star' : 'md-star-outline'}
-                />
-            </Wrapper>
-            {task.subTasks.map((subtask) => (
-                <SubtaskItem
-                    key={subtask.id}
-                    item={subtask}
-                    taskID={taskID}
-                ></SubtaskItem>
-            ))}
-            <SubTaskInput id={task.id} />
+            <TopItemsWrapper>
+                <Wrapper>
+                    <IoniconsButton
+                        onPressFn={isCompletedHandler}
+                        icon={
+                            task.isDone
+                                ? 'md-checkmark-circle'
+                                : 'md-checkmark-circle-outline'
+                        }
+                    />
+                    <StyledTextInput
+                        onChange={(str) =>
+                            dispatch(updateTask(task.id, str.nativeEvent.text))
+                        }
+                        value={task.content}
+                    />
+                    <IoniconsButton
+                        onPressFn={isImportantHandler}
+                        icon={task.isFinished ? 'md-star' : 'md-star-outline'}
+                    />
+                </Wrapper>
+                <ScrollView>
+                    {task.subTasks.map((subtask) => (
+                        <SubtaskItem
+                            key={subtask.id}
+                            item={subtask}
+                            taskID={taskID}
+                        ></SubtaskItem>
+                    ))}
+                    <SubTaskInput id={task.id} />
+                </ScrollView>
+            </TopItemsWrapper>
         </InnerWrapper>
     );
 };
