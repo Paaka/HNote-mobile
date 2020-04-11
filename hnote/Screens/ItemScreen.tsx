@@ -11,6 +11,9 @@ import SubtaskItem from '../components/molecules/FormItems/SubtaskItem';
 import { ScrollView } from 'react-native';
 import SubTaskInput from '../components/molecules/SubTaskForm';
 import IoniconsButton from '../components/atoms/IoniconsButton';
+import MarginWrapper from '../components/molecules/FormItems/MarginWrapper';
+import MenuListItem from '../components/molecules/MenuListItem';
+import AdditionalOptionsItem from '../components/molecules/AdditonalOptionsItem';
 
 const Wrapper = styled.View`
     display: flex;
@@ -39,6 +42,10 @@ const InnerWrapper = styled.View`
     flex: 1;
 `;
 
+const AdditionalOptions = styled.View`
+    align-items: center;
+`;
+
 const ItemScreen = (props) => {
     const taskID = props.navigation.getParam('taskId');
     const arrTask = props.tasks.filter((item) => item.id === taskID);
@@ -54,18 +61,24 @@ const ItemScreen = (props) => {
         dispatch(updateIsImportantHandler(task.id, task.isFinished));
     };
 
+    const updateMyDayViewHanlder = () => {
+        console.log();
+    };
+
     return (
         <InnerWrapper>
             <TopItemsWrapper>
                 <Wrapper>
-                    <IoniconsButton
-                        onPressFn={isCompletedHandler}
-                        icon={
-                            task.isDone
-                                ? 'md-checkmark-circle'
-                                : 'md-checkmark-circle-outline'
-                        }
-                    />
+                    <MarginWrapper mLeft={8}>
+                        <IoniconsButton
+                            onPressFn={isCompletedHandler}
+                            icon={
+                                task.isDone
+                                    ? 'md-checkmark-circle'
+                                    : 'md-checkmark-circle-outline'
+                            }
+                        />
+                    </MarginWrapper>
                     <StyledTextInput
                         onChange={(str) =>
                             dispatch(updateTask(task.id, str.nativeEvent.text))
@@ -88,6 +101,16 @@ const ItemScreen = (props) => {
                     <SubTaskInput id={task.id} />
                 </ScrollView>
             </TopItemsWrapper>
+            <AdditionalOptions>
+                <AdditionalOptionsItem
+                    isHighlight={task.isOnMyDayView}
+                    onPressFn={updateMyDayViewHanlder}
+                >
+                    {props.isOnMyDayView
+                        ? 'Added to my day view'
+                        : 'Add to my day view'}
+                </AdditionalOptionsItem>
+            </AdditionalOptions>
         </InnerWrapper>
     );
 };

@@ -37,6 +37,8 @@ const rootReducer = (state = initalState, action) => {
                         content: action.payload.content,
                         isDone: false,
                         isImportant: false,
+                        isOnMyDayView: false,
+                        creationDate: new Date(),
                         subTasks: [],
                     },
                 ],

@@ -7,14 +7,15 @@ import TouchableWrapper, {
 
 interface IIoniconsButton {
     size?: number;
+    color?: string;
     icon: string;
     onPressFn: ITouchableWrapper;
 }
 
-const IoniconsButton = ({ size = 32, icon, onPressFn }) => {
+const IoniconsButton = ({ size = 32, icon, onPressFn, color = 'black' }) => {
     return (
         <TouchableWrapper onPressFn={onPressFn}>
-            <Ionicons name={icon} size={size} />
+            <Ionicons name={icon} size={size} color={color} />
         </TouchableWrapper>
     );
 };
