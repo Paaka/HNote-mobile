@@ -16,6 +16,7 @@ import IoniconsButton from '../components/atoms/IoniconsButton';
 import MarginWrapper from '../components/molecules/FormItems/MarginWrapper';
 import MenuListItem from '../components/molecules/MenuListItem';
 import AdditionalOptionsItem from '../components/molecules/AdditonalOptionsItem';
+import StyledTextInput from '../components/atoms/TextInput';
 
 const Wrapper = styled.View`
     display: flex;
@@ -24,19 +25,13 @@ const Wrapper = styled.View`
     width: 100%;
     margin-top: 15px;
     padding-bottom: 10px;
+    justify-content: space-evenly;
 `;
 
 const TopItemsWrapper = styled.View`
     max-height: 33%;
     border-bottom-color: #ccc;
     border-bottom-width: 3px;
-`;
-
-const StyledTextInput = styled.TextInput`
-    max-width: 80%;
-    min-width: 80%;
-    font-size: 22px;
-    margin-left: 10px;
 `;
 
 const InnerWrapper = styled.View`
@@ -67,6 +62,10 @@ const ItemScreen = (props) => {
         dispatch(updateMyDay(task.id, task.isOnMyDayView));
     };
 
+    const updateTaskContentHandler = (str) => {
+        dispatch(updateTask(task.id, str.nativeEvent.text));
+    };
+
     return (
         <InnerWrapper>
             <TopItemsWrapper>
@@ -82,10 +81,11 @@ const ItemScreen = (props) => {
                         />
                     </MarginWrapper>
                     <StyledTextInput
-                        onChange={(str) =>
-                            dispatch(updateTask(task.id, str.nativeEvent.text))
-                        }
+                        secondary
+                        width={80}
+                        onChangeFn={updateTaskContentHandler}
                         value={task.content}
+                        fontSize={22}
                     />
                     <IoniconsButton
                         onPressFn={isImportantHandler}

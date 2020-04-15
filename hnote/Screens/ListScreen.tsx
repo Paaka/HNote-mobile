@@ -1,14 +1,26 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { TextInput, Button, ScrollView } from 'react-native';
-import { addTaskToList, updateTaskIsFinished } from '../actions/index';
+import { ScrollView, View } from 'react-native';
+import { addTaskToList } from '../actions/index';
 import styled from 'styled-components';
 
 import SingleTask from '../components/molecules/SingleTask';
+import StyledTextInput from '../components/atoms/TextInput';
+import IoniconsButton from '../components/atoms/IoniconsButton';
+import ButtonIcon from '../components/atoms/ButtonIcon';
+import HR from '../components/atoms/Hr';
 
 const Wrapper = styled.View`
     flex: 1;
-    background-color: rgb(107, 121, 132);
+`;
+
+const RowWrapper = styled.View`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+    margin-top: 10px;
 `;
 
 const ListScreen = (props) => {
@@ -23,14 +35,23 @@ const ListScreen = (props) => {
 
     const detailOpenHandler = () => {
         props.dispatch(addTaskToList(listID, enteredText));
+        setEnteredText('');
     };
-
-    const navigateToSingleTaskScreen = (item) => {};
 
     return (
         <Wrapper>
-            <TextInput onChangeText={inputChangeHandler}></TextInput>
-            <Button title="Add" onPress={() => detailOpenHandler()} />
+            <RowWrapper>
+                <StyledTextInput
+                    width={90}
+                    value={enteredText}
+                    onChangeFn={inputChangeHandler}
+                ></StyledTextInput>
+
+                <ButtonIcon
+                    onClick={detailOpenHandler}
+                    image={require('../assets/images/plus.png')}
+                ></ButtonIcon>
+            </RowWrapper>
             <ScrollView>
                 {allMyTasks.map((item) => (
                     <SingleTask

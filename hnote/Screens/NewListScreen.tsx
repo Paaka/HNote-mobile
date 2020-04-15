@@ -43,7 +43,11 @@ const NewListScreen = (props) => {
     return (
         <Wrapper>
             <Heading>Add List:</Heading>
-            <Input onChangeText={inputChangeHandler}></Input>
+            <Input
+                width={70}
+                value={enteredList}
+                onChangeFn={inputChangeHandler}
+            ></Input>
             <FlexWrapper>
                 <Button onPress={addListHandler}>Add Item</Button>
                 <Button bgColor="red" onPress={goBackHandler}>

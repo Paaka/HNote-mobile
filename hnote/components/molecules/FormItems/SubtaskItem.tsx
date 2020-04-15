@@ -8,6 +8,7 @@ import {
     deleteSubtask,
     updateIsSubtaskIsDone,
 } from '../../../actions/index';
+import StyledTextInput from '../../atoms/TextInput';
 
 const Wrapper = styled.View`
     display: flex;
@@ -66,10 +67,13 @@ const SubtaskItem = ({ item, taskID }) => {
                 />
             </MarginLeft>
             <BorderWrapper>
-                <StyledInput
-                    isDone={item.isDone}
+                <StyledTextInput
+                    width={90}
+                    fontSize={16}
+                    isFinished={item.isDone}
                     value={item.content}
-                    onChangeText={changeInputHandler}
+                    onChangeFn={changeInputHandler}
+                    secondary
                 />
                 <MarginLeft mLeft={15} mRight={0}>
                     <IoniconsButton
