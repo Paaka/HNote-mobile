@@ -5,6 +5,8 @@ import {
     updateTask,
     updateTaskIsFinished,
     updateIsImportantHandler,
+    updateMyDay1,
+    updateMyDay,
 } from '../actions';
 
 import SubtaskItem from '../components/molecules/FormItems/SubtaskItem';
@@ -62,7 +64,7 @@ const ItemScreen = (props) => {
     };
 
     const updateMyDayViewHanlder = () => {
-        console.log();
+        dispatch(updateMyDay(task.id, task.isOnMyDayView));
     };
 
     return (
@@ -103,10 +105,11 @@ const ItemScreen = (props) => {
             </TopItemsWrapper>
             <AdditionalOptions>
                 <AdditionalOptionsItem
+                    icon="md-sunny"
                     isHighlight={task.isOnMyDayView}
                     onPressFn={updateMyDayViewHanlder}
                 >
-                    {props.isOnMyDayView
+                    {task.isOnMyDayView
                         ? 'Added to my day view'
                         : 'Add to my day view'}
                 </AdditionalOptionsItem>

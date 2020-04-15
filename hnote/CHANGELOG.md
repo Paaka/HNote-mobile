@@ -1,5 +1,12 @@
 # Change log
 
+## V. 0.2.6 - April 11, 2020
+
+**Changes**
+
+-   Finished subtasks.
+-   Minor refactoring.
+
 ## V. 0.2.5 - April 09, 2020
 
 **Changes**

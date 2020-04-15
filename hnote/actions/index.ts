@@ -93,6 +93,16 @@ export const deleteSubtask = (taskID: string, subtaskID: string) => {
     };
 };
 
+export const updateMyDay = (taskID: string, isOnMyDate: boolean) => {
+    return {
+        type: types.UPDATE_MY_DAY_SCREEN,
+        payload: {
+            taskID,
+            isOnMyDate: !isOnMyDate,
+        },
+    };
+};
+
 export const updateIsSubtaskIsDone = (
     taskID: string,
     subtaskID: string,

@@ -27,6 +27,8 @@ const BorderWrapper = styled.View`
 
 const StyledInput = styled.TextInput`
     width: 90%;
+    text-decoration-line: ${(props) =>
+        props.isDone ? 'line-through' : 'none'};
 `;
 
 const MarginLeft = styled.View`
@@ -65,6 +67,7 @@ const SubtaskItem = ({ item, taskID }) => {
             </MarginLeft>
             <BorderWrapper>
                 <StyledInput
+                    isDone={item.isDone}
                     value={item.content}
                     onChangeText={changeInputHandler}
                 />

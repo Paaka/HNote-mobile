@@ -9,12 +9,12 @@ interface IMainProps {
     userLists: any;
 }
 
-const MainLists: FC<IMainProps> = props => {
+const MainLists: FC<IMainProps> = (props) => {
     return (
         <View style={styles.wrapper}>
             <MenuListItem
                 imagePath={require('../../assets/images/sun.png')}
-                onPress={() => console.log(props.nav.navigate('ListPage'))}
+                onPress={() => props.nav.navigate('ListPage')}
                 text="My Day"
             />
             <MenuListItem

@@ -12,7 +12,7 @@ interface IIoniconsButton {
     onPressFn: ITouchableWrapper;
 }
 
-const IoniconsButton = ({ size = 32, icon, onPressFn, color = 'black' }) => {
+const IoniconsButton = ({ icon, onPressFn, size = 32, color = 'black' }) => {
     return (
         <TouchableWrapper onPressFn={onPressFn}>
             <Ionicons name={icon} size={size} color={color} />

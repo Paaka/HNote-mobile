@@ -18,6 +18,7 @@ interface IAdditionalOptionsItem {
     onPressFn(): Function | void;
     children: string;
     isHighlight: boolean;
+    icon: string;
 }
 
 const AdditionalOptionsItem: FC<IAdditionalOptionsItem> = (props) => {
@@ -32,7 +33,7 @@ const AdditionalOptionsItem: FC<IAdditionalOptionsItem> = (props) => {
             <Wrapper color={decideColor()}>
                 <IoniconsButton
                     color={decideColor()}
-                    icon="md-sunny"
+                    icon={props.icon}
                     onPressFn={() => {}}
                 />
                 <Paragraph color={decideColor()}>{props.children}</Paragraph>

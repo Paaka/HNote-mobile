@@ -97,6 +97,21 @@ const rootReducer = (state = initalState, action) => {
                 }),
             };
         }
+        case Types.UPDATE_MY_DAY_SCREEN: {
+            return {
+                ...state,
+                tasks: state.tasks.map((task) => {
+                    if (task.id === action.payload.taskID) {
+                        return {
+                            ...task,
+                            isOnMyDayView: action.payload.isOnMyDate,
+                        };
+                    } else {
+                        return task;
+                    }
+                }),
+            };
+        }
         case Types.ADD_SUBTASK: {
             return {
                 ...state,
