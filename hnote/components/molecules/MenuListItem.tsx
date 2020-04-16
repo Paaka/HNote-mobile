@@ -20,7 +20,7 @@ const MenuListItem = ({ id, text, imagePath, onPress }) => {
     const dispatch = useDispatch();
 
     const createTwoButtonAlert = () => {
-        if (id !== 'sun') {
+        if (id !== 'nonDeletingItem') {
             Alert.alert(
                 'Are you sure ?',
                 'Do you want delete list: ' + text,

@@ -1,9 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import MenuListItem from '../molecules/MenuListItem';
 import HR from '../atoms/Hr';
-import { deleteList } from '../../actions/index';
 
 interface IMainProps {
     nav: any;
@@ -15,7 +14,7 @@ const MainLists: FC<IMainProps> = (props) => {
     return (
         <View style={styles.wrapper}>
             <MenuListItem
-                id="sun"
+                id="nonDeletingItem"
                 imagePath={require('../../assets/images/sun.png')}
                 onPress={() =>
                     props.nav.navigate({
@@ -28,7 +27,7 @@ const MainLists: FC<IMainProps> = (props) => {
                 text="My Day"
             />
             <MenuListItem
-                id="sun"
+                id="nonDeletingItem"
                 imagePath={require('../../assets/images/star.png')}
                 onPress={() =>
                     props.nav.navigate({
@@ -41,7 +40,7 @@ const MainLists: FC<IMainProps> = (props) => {
                 text="Important"
             />
             <MenuListItem
-                id="sun"
+                id="nonDeletingItem"
                 imagePath={require('../../assets/images/homework.png')}
                 onPress={() =>
                     props.nav.navigate({
@@ -57,12 +56,12 @@ const MainLists: FC<IMainProps> = (props) => {
 
             <View style={styles.newItemWrapper}>
                 <MenuListItem
+                    id="nonDeletingItem"
                     imagePath={require('../../assets/images/plus.png')}
                     onPress={() => {
                         props.nav.navigate('NewListPage');
                     }}
                     text="NEW LIST"
-                    onHold={() => {}}
                 />
             </View>
             <ScrollView>
