@@ -21,7 +21,7 @@ const ButtonItem = (props) => {
     return (
         <TouchableOpacity onPress={onPressHandleler}>
             <Wrapper>
-                <ButtonIcon image={props.icon} />
+                <ButtonIcon onClick={() => {}} image={props.icon} />
                 <Paragraph color="#444">{props.children}</Paragraph>
             </Wrapper>
         </TouchableOpacity>

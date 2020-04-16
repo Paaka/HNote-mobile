@@ -9,6 +9,15 @@ export const addList: any = (str: string) => {
     };
 };
 
+export const deleteList = (listID: string) => {
+    return {
+        type: types.DELETE_LIST,
+        payload: {
+            listID,
+        },
+    };
+};
+
 export const addTaskToList = (listId: string, str: string) => {
     return {
         type: types.ADD_TASK_TO_LIST,

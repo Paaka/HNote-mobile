@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { View, Image, StyleSheet, TouchableHighlight } from 'react-native';
 import ListText from '../atoms/Texts/ListText';
 
-const MenuListItem = ({ text, imagePath, onPress }) => {
+interface IMenuListItem {
+    text: string;
+    imagePath: string;
+    onPress(): Function | void;
+}
+
+const MenuListItem = ({ text, imagePath, onPress, onHold }) => {
+    const onlongPressAction = () => {
+        onHold();
+    };
+
     return (
-        <TouchableHighlight underlayColor="#ddd" onPress={onPress}>
+        <TouchableHighlight
+            onLongPress={onlongPressAction}
+            underlayColor="#ddd"
+            onPress={onPress}
+        >
             <View style={styles.wrapper}>
                 <Image style={styles.image} source={imagePath} />
                 <ListText>{text}</ListText>

@@ -2,8 +2,6 @@ import * as Types from '../actions/types';
 import SubtaskItem from '../components/molecules/FormItems/SubtaskItem';
 
 const initalState = {
-    counter: 1,
-    defaultLists: [{ id: 'MyDay' }],
     userLists: [],
     tasks: [],
 };
@@ -22,6 +20,15 @@ const rootReducer = (state = initalState, action) => {
                         text: action.payload.text,
                     },
                 ],
+            };
+        }
+        case Types.DELETE_LIST: {
+            console.log('action.payload');
+            return {
+                ...state,
+                userLists: state.userLists.filter(
+                    (list) => list.id !== action.payload.listID
+                ),
             };
         }
         case Types.ADD_TASK_TO_LIST: {
@@ -89,7 +96,7 @@ const rootReducer = (state = initalState, action) => {
                     if (item.id === action.payload.itemID) {
                         return {
                             ...item,
-                            isFinished: action.payload.isFinished,
+                            isImportant: action.payload.isFinished,
                         };
                     } else {
                         return item;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import { TouchableOpacity } from 'react-native';
 
@@ -7,7 +7,12 @@ const StyledImage = styled.Image`
     height: 30px;
 `;
 
-const ButtonIcon = (props) => {
+interface IButtonIcon {
+    image: 'string';
+    onClick(): Function | void;
+}
+
+const ButtonIcon: FC<IButtonIcon> = (props) => {
     const onPressHandler = () => {
         props.onClick();
     };

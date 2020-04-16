@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import MenuListItem from '../molecules/MenuListItem';
 import HR from '../atoms/Hr';
+import { deleteList } from '../../actions/index';
 
 interface IMainProps {
     nav: any;
     userLists: any;
+    dispatch: any;
 }
 
 const MainLists: FC<IMainProps> = (props) => {
@@ -14,18 +16,42 @@ const MainLists: FC<IMainProps> = (props) => {
         <View style={styles.wrapper}>
             <MenuListItem
                 imagePath={require('../../assets/images/sun.png')}
-                onPress={() => props.nav.navigate('ListPage')}
+                onPress={() =>
+                    props.nav.navigate({
+                        routeName: 'SpecialPage',
+                        params: {
+                            list: 'MyDay',
+                        },
+                    })
+                }
+                onHold={() => {}}
                 text="My Day"
             />
             <MenuListItem
                 imagePath={require('../../assets/images/star.png')}
-                onPress={() => console.log('work')}
+                onPress={() =>
+                    props.nav.navigate({
+                        routeName: 'SpecialPage',
+                        params: {
+                            list: 'Important',
+                        },
+                    })
+                }
                 text="Important"
+                onHold={() => {}}
             />
             <MenuListItem
                 imagePath={require('../../assets/images/homework.png')}
-                onPress={() => console.log('work')}
+                onPress={() =>
+                    props.nav.navigate({
+                        routeName: 'SpecialPage',
+                        params: {
+                            list: 'AllTask',
+                        },
+                    })
+                }
                 text="All tasks"
+                onHold={() => {}}
             />
             <HR />
 
@@ -36,6 +62,7 @@ const MainLists: FC<IMainProps> = (props) => {
                         props.nav.navigate('NewListPage');
                     }}
                     text="NEW LIST"
+                    onHold={() => {}}
                 />
             </View>
 
@@ -44,6 +71,7 @@ const MainLists: FC<IMainProps> = (props) => {
                     <MenuListItem
                         imagePath={require('../../assets/images/to-do.png')}
                         key={list.id}
+                        onHold={() => props.dispatch(deleteList(list.id))}
                         onPress={() =>
                             props.nav.navigate({
                                 routeName: 'ListPage',

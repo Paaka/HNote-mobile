@@ -1,5 +1,23 @@
 # Change log
 
+## V. 0.3 - April 16, 2020
+
+**Changes**
+
+-   Finished SpecialViews MyDay, isImportant, all Tasks
+
+**Added**
+
+-   Posibility to remove lists
+
+## V. 0.2.7 - April 15, 2020
+
+**Changes**
+
+-   Changed styling of ListScreen.
+-   Added Interface to BtnIcon.
+-   Refactored TextInput, now with secondary look.
+
 ## V. 0.2.6 - April 11, 2020
 
 **Changes**

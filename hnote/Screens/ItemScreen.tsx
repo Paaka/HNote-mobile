@@ -55,7 +55,7 @@ const ItemScreen = (props) => {
     };
 
     const isImportantHandler = () => {
-        dispatch(updateIsImportantHandler(task.id, task.isFinished));
+        dispatch(updateIsImportantHandler(task.id, task.isImportant));
     };
 
     const updateMyDayViewHanlder = () => {
@@ -89,7 +89,7 @@ const ItemScreen = (props) => {
                     />
                     <IoniconsButton
                         onPressFn={isImportantHandler}
-                        icon={task.isFinished ? 'md-star' : 'md-star-outline'}
+                        icon={task.isImportant ? 'md-star' : 'md-star-outline'}
                     />
                 </Wrapper>
                 <ScrollView>
