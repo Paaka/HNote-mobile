@@ -1,5 +1,13 @@
 import React, { FC } from 'react';
-import { View, Image, StyleSheet, TouchableHighlight } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { deleteList } from '../../actions/index';
+import {
+    View,
+    Image,
+    StyleSheet,
+    TouchableHighlight,
+    Alert,
+} from 'react-native';
 import ListText from '../atoms/Texts/ListText';
 
 interface IMenuListItem {
@@ -8,14 +16,34 @@ interface IMenuListItem {
     onPress(): Function | void;
 }
 
-const MenuListItem = ({ text, imagePath, onPress, onHold }) => {
-    const onlongPressAction = () => {
-        onHold();
+const MenuListItem = ({ id, text, imagePath, onPress }) => {
+    const dispatch = useDispatch();
+
+    const createTwoButtonAlert = () => {
+        if (id !== 'sun') {
+            Alert.alert(
+                'Are you sure ?',
+                'Do you want delete list: ' + text,
+                [
+                    {
+                        text: 'Cancel',
+                        onPress: () => {},
+                        style: 'cancel',
+                    },
+                    {
+                        text: 'OK',
+                        onPress: () => dispatch(deleteList(id)),
+                        style: 'destructive',
+                    },
+                ],
+                { cancelable: false }
+            );
+        }
     };
 
     return (
         <TouchableHighlight
-            onLongPress={onlongPressAction}
+            onLongPress={createTwoButtonAlert}
             underlayColor="#ddd"
             onPress={onPress}
         >

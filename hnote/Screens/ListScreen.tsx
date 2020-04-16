@@ -45,6 +45,7 @@ const ListScreen = (props) => {
                     width={90}
                     value={enteredText}
                     onChangeFn={inputChangeHandler}
+                    placeholder="Add task to list"
                 ></StyledTextInput>
 
                 <ButtonIcon

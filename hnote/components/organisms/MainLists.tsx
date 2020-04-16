@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
 import MenuListItem from '../molecules/MenuListItem';
 import HR from '../atoms/Hr';
 import { deleteList } from '../../actions/index';
@@ -15,6 +15,7 @@ const MainLists: FC<IMainProps> = (props) => {
     return (
         <View style={styles.wrapper}>
             <MenuListItem
+                id="sun"
                 imagePath={require('../../assets/images/sun.png')}
                 onPress={() =>
                     props.nav.navigate({
@@ -24,10 +25,10 @@ const MainLists: FC<IMainProps> = (props) => {
                         },
                     })
                 }
-                onHold={() => {}}
                 text="My Day"
             />
             <MenuListItem
+                id="sun"
                 imagePath={require('../../assets/images/star.png')}
                 onPress={() =>
                     props.nav.navigate({
@@ -38,9 +39,9 @@ const MainLists: FC<IMainProps> = (props) => {
                     })
                 }
                 text="Important"
-                onHold={() => {}}
             />
             <MenuListItem
+                id="sun"
                 imagePath={require('../../assets/images/homework.png')}
                 onPress={() =>
                     props.nav.navigate({
@@ -51,7 +52,6 @@ const MainLists: FC<IMainProps> = (props) => {
                     })
                 }
                 text="All tasks"
-                onHold={() => {}}
             />
             <HR />
 
@@ -65,13 +65,12 @@ const MainLists: FC<IMainProps> = (props) => {
                     onHold={() => {}}
                 />
             </View>
-
             <ScrollView>
                 {props.userLists.map((list, item) => (
                     <MenuListItem
                         imagePath={require('../../assets/images/to-do.png')}
                         key={list.id}
-                        onHold={() => props.dispatch(deleteList(list.id))}
+                        id={list.id}
                         onPress={() =>
                             props.nav.navigate({
                                 routeName: 'ListPage',

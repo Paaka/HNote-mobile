@@ -6,6 +6,7 @@ interface ITextInput {
     isFinished?: boolean;
     secondary?: boolean;
     fontSize?: number;
+    placeholder?: string;
     value: string;
     onChangeFn: (str: string) => void;
 }
@@ -33,6 +34,7 @@ const StyledTextInput: FC<ITextInput> = (props) => {
     };
     return (
         <Input
+            placeholder={props.placeholder}
             onChangeText={onChangeHandler}
             width={props.width}
             boolean={props.secondary}
