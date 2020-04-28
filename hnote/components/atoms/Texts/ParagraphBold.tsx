@@ -1,17 +1,7 @@
-import React, { Children } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import styled from 'styled-components';
 
-const ParagraphBold = () => (
-    <View>
-        <Text style={styles.text}>{Children}</Text>
-    </View>
-);
-
-const styles = StyleSheet.create({
-    wrapper: {},
-    text: {
-        fontSize: 700,
-    },
-});
+const ParagraphBold = styled.Text`
+    font-weight: 700;
+`;
 
 export default ParagraphBold;

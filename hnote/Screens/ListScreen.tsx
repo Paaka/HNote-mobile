@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { ScrollView, View } from 'react-native';
 import { addTaskToList, updateList } from '../actions/index';
 import styled from 'styled-components';
@@ -22,10 +22,13 @@ const RowWrapper = styled.View`
 `;
 
 const ListScreen = (props) => {
+    const dispatch = useDispatch();
+    const userLists = useSelector((state) => state.userLists);
+    const tasks = useSelector((state) => state.tasks);
     const listID = props.navigation.getParam('listId');
-    const currentList = props.userLists.filter((list) => list.id === listID);
-    const allMyTasks = props.tasks.filter((task) => task.list === listID);
-    console.log(currentList[0]);
+    const currentList = userLists.filter((list) => list.id === listID);
+    const allMyTasks = tasks.filter((task) => task.list === listID);
+
     const [enteredText, setEnteredText] = useState('');
 
     const inputChangeHandler = (enteredText) => {
@@ -33,11 +36,11 @@ const ListScreen = (props) => {
     };
 
     const updateListTitle = (str) => {
-        props.dispatch(updateList(currentList[0].id, str));
+        dispatch(updateList(currentList[0].id, str));
     };
 
     const detailOpenHandler = () => {
-        props.dispatch(addTaskToList(listID, enteredText));
+        dispatch(addTaskToList(listID, enteredText));
         setEnteredText('');
     };
 
@@ -79,4 +82,4 @@ const ListScreen = (props) => {
 
 const mapStateToProps = ({ userLists, tasks }) => ({ userLists, tasks });
 
-export default connect(mapStateToProps, null)(ListScreen);
+export default ListScreen;

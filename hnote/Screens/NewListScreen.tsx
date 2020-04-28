@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addList } from '../actions';
 import { Keyboard } from 'react-native';
 
@@ -24,6 +24,7 @@ const FlexWrapper = styled.View`
 `;
 
 const NewListScreen = (props) => {
+    const dispatch = useDispatch();
     const [enteredList, setEnteredList] = useState('');
 
     const inputChangeHandler = (enteredText) => {
@@ -33,7 +34,7 @@ const NewListScreen = (props) => {
     const addListHandler = () => {
         Keyboard.dismiss();
         props.navigation.goBack();
-        props.dispatch(addList(enteredList));
+        dispatch(addList(enteredList));
     };
 
     const goBackHandler = () => {
@@ -58,4 +59,4 @@ const NewListScreen = (props) => {
     );
 };
 
-export default connect(null, null)(NewListScreen);
+export default NewListScreen;

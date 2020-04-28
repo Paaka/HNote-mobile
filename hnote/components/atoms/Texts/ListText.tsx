@@ -1,15 +1,8 @@
-import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import styled from 'styled-components';
 
-const ListText = props => (
-    <Text style={{ ...styles.listText, ...props.style }}>{props.children}</Text>
-);
-
-const styles = StyleSheet.create({
-    listText: {
-        fontWeight: '700',
-        fontSize: 20,
-    },
-});
+const ListText = styled.Text`
+    font-weight: 700;
+    font-size: 20px;
+`;
 
 export default ListText;

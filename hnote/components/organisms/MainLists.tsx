@@ -1,18 +1,33 @@
 import React, { FC } from 'react';
-import { connect } from 'react-redux';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { ScrollView } from 'react-native';
 import MenuListItem from '../molecules/MenuListItem';
 import HR from '../atoms/Hr';
 
 interface IMainProps {
     nav: any;
-    userLists: any;
     dispatch: any;
 }
 
+const Wrapper = styled.View`
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-left: 10px;
+`;
+
+const AlignWrapper = styled.View`
+    align-items: center;
+`;
+
 const MainLists: FC<IMainProps> = (props) => {
+    const userLists = useSelector((state) => state.userLists);
+
     return (
-        <View style={styles.wrapper}>
+        <Wrapper>
             <MenuListItem
                 id="nonDeletingItem"
                 imagePath={require('../../assets/images/sun.png')}
@@ -60,7 +75,7 @@ const MainLists: FC<IMainProps> = (props) => {
             />
             <HR />
 
-            <View style={styles.newItemWrapper}>
+            <AlignWrapper>
                 <MenuListItem
                     id="nonDeletingItem"
                     imagePath={require('../../assets/images/plus.png')}
@@ -69,9 +84,9 @@ const MainLists: FC<IMainProps> = (props) => {
                     }}
                     text="NEW LIST"
                 />
-            </View>
+            </AlignWrapper>
             <ScrollView>
-                {props.userLists.map((list, item) => (
+                {userLists.map((list, item) => (
                     <MenuListItem
                         imagePath={require('../../assets/images/to-do.png')}
                         key={list.id}
@@ -89,26 +104,8 @@ const MainLists: FC<IMainProps> = (props) => {
                     />
                 ))}
             </ScrollView>
-        </View>
+        </Wrapper>
     );
 };
 
-const styles = StyleSheet.create({
-    wrapper: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: '#eee',
-        paddingHorizontal: 15,
-    },
-    itemsWrapper: {
-        flex: 1,
-        justifyContent: 'space-between',
-    },
-    newItemWrapper: {
-        alignItems: 'center',
-    },
-});
-
-const mapStateToProps = ({ userLists }) => ({ userLists });
-
-export default connect(mapStateToProps, null)(MainLists);
+export default MainLists;

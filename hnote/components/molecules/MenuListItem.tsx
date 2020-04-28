@@ -1,13 +1,8 @@
 import React, { FC } from 'react';
+import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { deleteList } from '../../actions/index';
-import {
-    View,
-    Image,
-    StyleSheet,
-    TouchableHighlight,
-    Alert,
-} from 'react-native';
+import { TouchableHighlight, Alert } from 'react-native';
 import ListText from '../atoms/Texts/ListText';
 
 interface IMenuListItem {
@@ -15,6 +10,20 @@ interface IMenuListItem {
     imagePath: string;
     onPress(): Function | void;
 }
+
+const Wrapper = styled.View`
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 95%;
+`;
+
+const StyledImage = styled.Image`
+    height: 30px;
+    width: 30px;
+    margin-right: 15px;
+`;
 
 const MenuListItem = ({ id, text, imagePath, onPress }) => {
     const dispatch = useDispatch();
@@ -47,27 +56,12 @@ const MenuListItem = ({ id, text, imagePath, onPress }) => {
             underlayColor="#ddd"
             onPress={onPress}
         >
-            <View style={styles.wrapper}>
-                <Image style={styles.image} source={imagePath} />
+            <Wrapper>
+                <StyledImage source={imagePath} />
                 <ListText>{text}</ListText>
-            </View>
+            </Wrapper>
         </TouchableHighlight>
     );
 };
-
-const styles = StyleSheet.create({
-    wrapper: {
-        flexDirection: 'row',
-        alignContent: 'center',
-        alignItems: 'center',
-        marginVertical: 10,
-        width: '95%',
-    },
-    image: {
-        width: 30,
-        height: 30,
-        marginRight: 15,
-    },
-});
 
 export default MenuListItem;

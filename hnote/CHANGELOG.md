@@ -1,5 +1,16 @@
 # Change log
 
+## V. 0.4.1 - April 23,2020
+
+**Changed**
+
+-   Changed all styling from Stylesheet.create to styled componets
+-   Changed all 'connect' to useSelectors.
+
+**Deleted**
+
+-   MainTemplate.tsx
+
 ## V. 0.4 - April 22,2020
 
 **Added**

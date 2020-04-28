@@ -1,11 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
-import MainTemplate from '../components/templates/MainTemplate';
+import MainLists from '../components/organisms/MainLists';
 
-const MainScreen = props => {
+const MainScreen = (props) => {
     return (
         <View>
-            <MainTemplate nav={props.navigation}></MainTemplate>
+            <MainLists nav={props.navigation}></MainLists>
         </View>
     );
 };

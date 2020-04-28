@@ -1,16 +1,12 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import styled from 'styled-components';
 
-const HR = props => <View style={styles.HR}></View>;
-
-const styles = StyleSheet.create({
-    HR: {
-        width: '95%',
-        height: 1,
-        backgroundColor: 'gray',
-        marginRight: 10,
-        marginVertical: 15,
-    },
-});
+const HR = styled.View`
+    width: 95%;
+    height: 2px;
+    background-color: gray;
+    margin-right: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+`;
 
 export default HR;

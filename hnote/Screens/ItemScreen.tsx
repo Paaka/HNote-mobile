@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import {
     updateTask,
@@ -43,8 +43,9 @@ const AdditionalOptions = styled.View`
 `;
 
 const ItemScreen = (props) => {
+    const tasks = useSelector((state) => state.tasks);
     const taskID = props.navigation.getParam('taskId');
-    const arrTask = props.tasks.filter((item) => item.id === taskID);
+    const arrTask = tasks.filter((item) => item.id === taskID);
     const [task] = arrTask;
 
     const dispatch = useDispatch();
@@ -62,7 +63,6 @@ const ItemScreen = (props) => {
     };
 
     const updateTaskContentHandler = (str) => {
-        console.log(str);
         dispatch(updateTask(task.id, str));
     };
 
@@ -120,4 +120,4 @@ const ItemScreen = (props) => {
 
 const mapStateToProps = ({ tasks }) => ({ tasks });
 
-export default connect(mapStateToProps, null)(ItemScreen);
+export default ItemScreen;
