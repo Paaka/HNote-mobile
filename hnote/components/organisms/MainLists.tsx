@@ -52,6 +52,12 @@ const MainLists: FC<IMainProps> = (props) => {
                 }
                 text="All tasks"
             />
+            <MenuListItem
+                id="nonDeletingItem"
+                imagePath={require('../../assets/images/photo.png')}
+                onPress={() => props.nav.navigate('GalleryPage')}
+                text="Images"
+            />
             <HR />
 
             <View style={styles.newItemWrapper}>

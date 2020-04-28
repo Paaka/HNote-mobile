@@ -6,6 +6,7 @@ import ListScreen from '../Screens/ListScreen';
 import NewListScreen from '../Screens/NewListScreen';
 import ItemScreen from '../Screens/ItemScreen';
 import SpecialScreen from '../Screens/SpecialScreen';
+import GalleryScreen from '../Screens/GalleryScreen';
 
 const ToDoNavigator = createStackNavigator({
     MainPage: MainScreen,
@@ -13,6 +14,7 @@ const ToDoNavigator = createStackNavigator({
     NewListPage: NewListScreen,
     TaskPage: ItemScreen,
     SpecialPage: SpecialScreen,
+    GalleryPage: GalleryScreen,
 });
 
 export default createAppContainer(ToDoNavigator);

@@ -1,6 +1,18 @@
 # Change log
 
+## V. 0.4 - April 22,2020
+
+**Added**
+
+-   Pictures : coffee, highway,mug, photo(gallery icon),
+-   Gallery Screen,
+-   Posibility to rename lists.
+
 ## V. 0.3 - April 16, 2020
+
+**Deleted**
+
+-   ButtonItem.tsx, UserHeading.tsx, MainNavbar.tsx
 
 **Changes**
 

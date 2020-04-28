@@ -18,6 +18,16 @@ export const deleteList = (listID: string) => {
     };
 };
 
+export const updateList = (listID: string, updatedContent: string) => {
+    return {
+        type: types.UPDATE_LIST,
+        payload: {
+            listID,
+            updatedContent,
+        },
+    };
+};
+
 export const addTaskToList = (listId: string, str: string) => {
     return {
         type: types.ADD_TASK_TO_LIST,

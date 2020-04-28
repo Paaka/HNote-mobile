@@ -5,7 +5,6 @@ import {
     updateTask,
     updateTaskIsFinished,
     updateIsImportantHandler,
-    updateMyDay1,
     updateMyDay,
 } from '../actions';
 
@@ -63,7 +62,8 @@ const ItemScreen = (props) => {
     };
 
     const updateTaskContentHandler = (str) => {
-        dispatch(updateTask(task.id, str.nativeEvent.text));
+        console.log(str);
+        dispatch(updateTask(task.id, str));
     };
 
     return (

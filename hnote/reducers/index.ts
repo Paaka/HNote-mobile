@@ -23,12 +23,27 @@ const rootReducer = (state = initalState, action) => {
             };
         }
         case Types.DELETE_LIST: {
-            console.log('action.payload');
             return {
                 ...state,
                 userLists: state.userLists.filter(
                     (list) => list.id !== action.payload.listID
                 ),
+            };
+        }
+        case Types.UPDATE_LIST: {
+            console.log(action.payload);
+            return {
+                ...state,
+                userLists: state.userLists.map((list) => {
+                    if (list.id === action.payload.listID) {
+                        return {
+                            ...list,
+                            text: action.payload.updatedContent,
+                        };
+                    } else {
+                        return list;
+                    }
+                }),
             };
         }
         case Types.ADD_TASK_TO_LIST: {

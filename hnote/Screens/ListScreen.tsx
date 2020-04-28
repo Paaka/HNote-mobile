@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, View } from 'react-native';
-import { addTaskToList } from '../actions/index';
+import { addTaskToList, updateList } from '../actions/index';
 import styled from 'styled-components';
 
 import SingleTask from '../components/molecules/SingleTask';
 import StyledTextInput from '../components/atoms/TextInput';
-import IoniconsButton from '../components/atoms/IoniconsButton';
 import ButtonIcon from '../components/atoms/ButtonIcon';
-import HR from '../components/atoms/Hr';
 
 const Wrapper = styled.View`
     flex: 1;
@@ -25,12 +23,17 @@ const RowWrapper = styled.View`
 
 const ListScreen = (props) => {
     const listID = props.navigation.getParam('listId');
+    const currentList = props.userLists.filter((list) => list.id === listID);
     const allMyTasks = props.tasks.filter((task) => task.list === listID);
-
+    console.log(currentList[0]);
     const [enteredText, setEnteredText] = useState('');
 
     const inputChangeHandler = (enteredText) => {
         setEnteredText(enteredText);
+    };
+
+    const updateListTitle = (str) => {
+        props.dispatch(updateList(currentList[0].id, str));
     };
 
     const detailOpenHandler = () => {
@@ -40,6 +43,11 @@ const ListScreen = (props) => {
 
     return (
         <Wrapper>
+            <StyledTextInput
+                value={currentList[0].text}
+                onChangeFn={updateListTitle}
+                secondary
+            />
             <RowWrapper>
                 <StyledTextInput
                     width={90}
@@ -67,13 +75,6 @@ const ListScreen = (props) => {
             </ScrollView>
         </Wrapper>
     );
-};
-
-ListScreen.navigationOptions = (someData) => {
-    const listTitle = someData.navigation.getParam('title');
-    return {
-        headerTitle: listTitle,
-    };
 };
 
 const mapStateToProps = ({ userLists, tasks }) => ({ userLists, tasks });
