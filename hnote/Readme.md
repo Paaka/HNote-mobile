@@ -2,15 +2,18 @@
 
 ## **Folders Structure**
 
-- **actions** (actions for redux)
-- **assets** (img, fonts etc.)
-- **components** (only re useable part of code)
-- **constans** (only const variable)
-- **entities** (typing for typescript)
-- **reducers** (all reducers for redux)
-- **screens** (all apps screens (pages))
-    - **[FOLDER]** (all you need to single screen)
-- **tools** (reuseable tools)
+-   **actions** (actions for redux)
+-   **assets** (img, fonts etc.)
+    -   **[Fonts]** (all fonts)
+    -   **[Images]** (all images)
+-   **components** (only re useable part of code)
+    -   **[atoms]** (the smallest re useable parts like Buttons, Paragraphs, etc.)
+    -   **[molecules]**(medium re useable parts of code, usually with own logic inside)
+    -   **[organisms]**(big re useable parts of code)
+-   **constans** (only const variable)
+-   **navigation** (all navigators)
+-   **reducers** (all reducers for redux)
+-   **screens** (all apps screens (pages))
 
 ## **Usage**
 
