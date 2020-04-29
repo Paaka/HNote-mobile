@@ -6,6 +6,7 @@ import { TouchableHighlight, Alert } from 'react-native';
 import ListText from '../atoms/Texts/ListText';
 
 interface IMenuListItem {
+    id?: string;
     text: string;
     imagePath: string;
     onPress(): Function | void;
@@ -25,7 +26,7 @@ const StyledImage = styled.Image`
     margin-right: 15px;
 `;
 
-const MenuListItem = ({ id, text, imagePath, onPress }) => {
+const MenuListItem: FC<IMenuListItem> = ({ id, text, imagePath, onPress }) => {
     const dispatch = useDispatch();
 
     const createTwoButtonAlert = () => {

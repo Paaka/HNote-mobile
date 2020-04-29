@@ -83,6 +83,7 @@ const ItemScreen = (props) => {
                     <StyledTextInput
                         secondary
                         width={80}
+                        isFinished={task.isDone}
                         onChangeFn={updateTaskContentHandler}
                         value={task.content}
                         fontSize={22}

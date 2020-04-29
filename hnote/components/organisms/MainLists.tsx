@@ -7,7 +7,6 @@ import HR from '../atoms/Hr';
 
 interface IMainProps {
     nav: any;
-    dispatch: any;
 }
 
 const Wrapper = styled.View`

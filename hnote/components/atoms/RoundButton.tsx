@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 
 const Wrapper = styled.View`
     padding: 5px 20px;
@@ -16,7 +16,14 @@ const StyledText = styled.Text`
     color: ${({ color }) => (color ? color : 'white')};
 `;
 
-const Button = props => {
+interface IButton {
+    color?: string;
+    bgColor?: string;
+    children?: string;
+    onPress(): () => void;
+}
+
+const Button: FC<IButton> = (props) => {
     const onPressHandler = () => {
         props.onPress();
     };

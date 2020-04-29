@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { addSubtask } from '../../actions/index';
@@ -18,7 +18,11 @@ const StyledTextInput = styled.TextInput`
     margin-left: 10px;
 `;
 
-const SubTaskForm = (props) => {
+interface ISubtaskForm {
+    id: string;
+}
+
+const SubTaskForm: FC<ISubtaskForm> = (props) => {
     const dispatch = useDispatch();
     const AddIcon = require('../../assets/images/add.png');
     const [inputedText, setInputedText] = useState('');

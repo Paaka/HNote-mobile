@@ -1,6 +1,6 @@
 import * as types from './types';
 
-export const addList: any = (str: string) => {
+export const addList = (str: string) => {
     return {
         type: types.ADD_LIST,
         payload: {

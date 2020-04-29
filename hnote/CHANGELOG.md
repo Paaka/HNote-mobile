@@ -1,5 +1,16 @@
 # Change log
 
+## V. 0.4.2 - April 28, 2020
+
+**Changes**
+
+-   Minor defactoring.
+
+**Deleted**
+
+-   SingleTask.tsx
+-   Images: circle.png, delete.png, siberian-husky.png.
+
 ## V. 0.4.1 - April 23,2020
 
 **Changed**

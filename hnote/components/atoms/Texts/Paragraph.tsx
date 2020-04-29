@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import { Text } from 'react-native';
 
-const Paragraph = styled.Text`
+interface IParagraph {
+    isFinished?: boolean;
+    color?: string;
+}
+
+const Paragraph = styled.Text<IParagraph>`
     font-size: 20px;
     font-weight: 300;
     padding: 0;
