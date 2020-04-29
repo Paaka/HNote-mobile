@@ -29,6 +29,7 @@ const SubTaskForm: FC<ISubtaskForm> = (props) => {
 
     const addSubTaskHandleler = () => {
         dispatch(addSubtask(props.id, inputedText));
+        setInputedText('');
     };
 
     const changeTextHandleler = (str) => {
@@ -40,6 +41,7 @@ const SubTaskForm: FC<ISubtaskForm> = (props) => {
             <ButtonIcon image={AddIcon} onClick={addSubTaskHandleler} />
             <StyledTextInput
                 id="hello"
+                value={inputedText}
                 onChangeText={changeTextHandleler}
                 placeholder="Add step"
                 placeholderTextColor="royalblue"

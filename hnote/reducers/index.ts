@@ -28,6 +28,9 @@ const rootReducer = (state = initalState, action) => {
                 userLists: state.userLists.filter(
                     (list) => list.id !== action.payload.listID
                 ),
+                tasks: state.tasks.filter(
+                    (task) => task.list !== action.payload.listID
+                ),
             };
         }
         case Types.UPDATE_LIST: {

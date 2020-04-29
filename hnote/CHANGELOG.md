@@ -1,5 +1,16 @@
 # Change log
 
+## V. 1.0.0 - April 29, 2020
+
+**Added**
+
+-   Readme.md
+
+**Fixed**
+
+-   SubtaskForm to clear after submit.
+-   Deleting list also deletes own notes.
+
 ## V. 0.4.2 - April 28, 2020
 
 **Changes**
